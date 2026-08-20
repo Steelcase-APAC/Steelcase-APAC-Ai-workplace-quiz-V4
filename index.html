@@ -163,12 +163,13 @@
     .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: #202124; }
     .form-group input { width: 100%; padding: 10px 14px; border: 1px solid #DADCE0; border-radius: 4px; font-size: 14px; }
 
-    .result-grid { display: grid; grid-template-columns: 320px 1fr; gap: 32px; }
-    .result-panel { border-radius: 8px; padding: 32px 24px; text-align: center; border: 1px solid #DADCE0; }
-    .result-panel h2 { font-size: 24px; font-weight: 400; margin: 24px 0 12px; }
-    .score-display { font-size: 72px; font-weight: 300; line-height: 1; margin-top: 24px; }
+    .result-top-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+    .result-grid { display: flex; flex-direction: column; gap: 24px; }
+    .result-panel { border-radius: 8px; padding: 28px 24px; text-align: center; border: 1px solid #DADCE0; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+    .result-panel h2 { font-size: 22px; font-weight: 600; margin: 16px 0 8px; }
+    .score-display { font-size: 64px; font-weight: 300; line-height: 1; margin-top: 12px; }
 
-    .ai-report-box { background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 28px; margin-bottom: 24px; text-align: left; }
+    .ai-report-box { background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 28px; margin-bottom: 24px; margin-top: 0; text-align: left; }
     .ai-report-box .ai-header { display: flex; align-items: center; gap: 8px; color: var(--primary-color); font-weight: 600; font-size: 18px; margin-bottom: 20px; border-bottom: 1px solid #E5E7EB; padding-bottom: 12px;}
     .ai-content { font-size: 15px; line-height: 1.75; color: #374151; }
     .top-insights-box { background: #F0F7FF; border: 1px solid #BFDBFE; border-left: 5px solid #1D4ED8; border-radius: 8px; padding: 20px 24px; margin-bottom: 28px; }
@@ -266,7 +267,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-20T08:17:45.525Z",
+    "lastPublishedAt": "2026-08-20T08:26:35.036Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/"
   },
   "reportSections": [
@@ -797,16 +798,16 @@
 
         mainCard.innerHTML = `
           <div class="result-grid">
-            <div>
-              <div class="result-panel" style="background-color: ${activeRes.color}; margin-bottom: 24px;">
+            <div class="result-top-grid">
+              <div class="result-panel" style="background-color: ${activeRes.color};">
                 <div style="font-size:12px; font-weight:600; text-transform:uppercase;">${escapeHtml(activeRes.tone)}</div>
                 <div class="score-display">${score}</div>
                 <div style="font-size:12px; font-weight:600;">OUT OF 100</div>
                 <h2>${escapeHtml(activeRes.title)}</h2>
-                <p style="font-size:14px; line-height:1.6;">${escapeHtml(activeRes.desc)}</p>
+                <p style="font-size:14px; line-height:1.6; margin: 0;">${escapeHtml(activeRes.desc)}</p>
               </div>
 
-              <div style="padding:24px; background:#F8F9FA; border-radius:8px; border:1px solid #DADCE0;">
+              <div style="padding:24px; background:#F8F9FA; border-radius:8px; border:1px solid #DADCE0; display: flex; flex-direction: column; justify-content: center;">
                 <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:#059669; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
                   ✓ Congratulations! You Qualify for an Executive Strategy Consultation
                 </div>
