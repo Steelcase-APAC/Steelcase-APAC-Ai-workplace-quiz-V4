@@ -257,6 +257,7 @@
 
   <script>
     const QUIZ_CONFIG = {
+  "activeTemplateId": "steelcase-arc-ai",
   "branding": {
     "primaryColor": "#1A73E8",
     "bodyColor": "#F1F3F4",
@@ -264,6 +265,82 @@
     "logoUrl": "data:image/png;base64,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",
     "showLogoInPdf": true,
     "accentColor": "#787878"
+  },
+  "leadCapture": {
+    "formType": "native",
+    "hubspot": {
+      "portalId": "",
+      "formId": "",
+      "region": "na1"
+    },
+    "requireWorkEmail": true,
+    "fields": {
+      "name": {
+        "label": "Name",
+        "enabled": true,
+        "required": true
+      },
+      "email": {
+        "label": "Work Email",
+        "enabled": true,
+        "required": true
+      },
+      "company": {
+        "label": "Company / Organization",
+        "enabled": true,
+        "required": true
+      },
+      "role": {
+        "label": "Job Title / Role",
+        "enabled": true,
+        "required": false
+      },
+      "phone": {
+        "label": "Direct Phone",
+        "enabled": true,
+        "required": false
+      },
+      "projectStatus": {
+        "label": "Workplace Project Status",
+        "enabled": true,
+        "required": true
+      },
+      "customField": {
+        "label": "Custom Question",
+        "enabled": false,
+        "required": false,
+        "value": ""
+      }
+    },
+    "customQuestions": [
+      {
+        "id": "form_q_1787319788695_eafs",
+        "label": "Office size",
+        "type": "select",
+        "required": false,
+        "enabled": true,
+        "options": [
+          "A. Less than 10,000 sq ft",
+          "B. 10,000 – 50,000 sq ft",
+          "C. 50,000 – 100,000 sq ft",
+          "D. 100,000+ sq ft"
+        ]
+      }
+    ]
+  },
+  "ctaConfig": {
+    "primaryCtaText": "Apply for Executive Strategy Consultation",
+    "primaryCtaType": "in_app",
+    "redirectUrl": "",
+    "secondaryCtaEnabled": true,
+    "secondaryCtaText": "Request Direct Phone Callback",
+    "scoreLabel": "Readiness Score",
+    "disclaimer": "Confidential diagnostic prepared by Steelcase Applied Research + Consulting (ARC)."
+  },
+  "aiPersona": {
+    "role": "Senior Workplace Strategy Architect & AI Workplace Specialist at Steelcase Applied Research + Consulting (ARC)",
+    "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
+    "tone": "Executive, authoritative, architectural, and data-driven"
   },
   "content": {
     "eyebrow": "Executive Diagnostic",
@@ -278,7 +355,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-20T08:37:38.312Z",
+    "lastPublishedAt": "2026-08-21T11:12:12.534Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/"
   },
   "reportSections": [
@@ -350,7 +427,7 @@
   "dangerZoneConfig": {
     "masterPrompt": "You are a Senior Workplace Strategy Architect & AI Workplace Specialist from Steelcase Applied Research + Consulting (ARC). You are conducting a high-level diagnostic assessment for the client organization.\n\nSURVEY INPUTS & DIAGNOSTIC DIRECTIVES:\nAnalyze the organization's scores across spatial adaptability, acoustic containment, and cognitive velocity. Synthesize their parameters against empirical workplace benchmarks.\n\nSTEP 1: MANDATORY WEB RESEARCH & COMPANY INTELLIGENCE\nPerform Google search research on the client organization to extract specific verified intelligence:\n1. Company background, industry sector, headquarters location, key offices, and scale.\n2. Recent workplace news, office openings, headquarters relocations, hybrid/RTO work policies.\n3. Major technology initiatives, AI strategy, engineering expansions, or digital transformation press news.\n- Insert hyperlinked HTML anchor tags with target=\"_blank\" rel=\"noopener noreferrer\" directly in the prose for every cited source.\n\nSTEP 2: HIGHLY TECHNICAL & INSIGHTFUL WORKPLACE DIAGNOSTIC REPORT\nWrite a deeply technical, analytical, and actionable workplace diagnostic report using professional workplace architecture and environmental psychology terminology (STC, RT60, Visual Privacy Index, Cognitive Load & Task Switching Overhead, Micro-Zones for Focused AI Prompting, Agile Pod Topologies). Attach inline cited source badges with hover tooltips and footnote links.",
     "defaultRagBank": "1. **Microsoft (Modern AI Workplace & Focus Design)**: Reengineered team workspaces for AI co-creation and async focus, reducing task-switching overhead, eliminating 1.2 hours/day of redundant sync meetings per worker, and increasing developer output velocity by 22%.\n2. **Cisco (PENN 1 NYC & Osaka Agile Workspaces)**: Redesigned offices with flexible mobile power, wireless IoT, and acoustic micro-zones — achieved 40% increase in collaboration zones, 13% workstation capacity gain in 36% less footprint, and $1.2M annual energy/lease savings.\n3. **SAP (Flex Culture & Workplace Health Index)**: Redesigned physical spaces to prioritize well-being and acoustic privacy — boosted SAP's Business Health Index from 69% to 78%, generating $90M–$100M in annual operating profit increase per 1% index gain.\n4. **Salesforce / Slack (AI-Enabled Workspaces)**: Integrated dedicated generative AI war rooms and quiet prompting spaces — saved employees up to 1 month of lost productive time annually per employee and boosted customer response velocity by 14% per hour.\n5. **Engie Headquarters (Global Energy Leader, Paris/Milan)**: Consolidated 700 employees into a Steelcase-designed collaborative hub — fostered spontaneous cross-subsidiary innovation, reducing project delivery cycle times by 18%.\n6. **IIMA Ventures (Startup Accelerator Hub)**: Deployed Steelcase morphable Maker Labs and mobile acoustic boundaries — enabled founders to instantly switch between high-energy AI hacking and STC-isolated pitch prep, accelerating product iteration by 35%.\n7. **Paris WorkLife (Steelcase Hybrid Lab)**: Engineered technology-enabled video & acoustic focus pods — measured a 13% direct gain in daily employee productivity and a 28% increase in workplace satisfaction.\n8. **La-Z-Boy Global Headquarters**: Replaced traditional rigid cubicles with Steelcase open collaborative pods and quiet sanctuaries — resulted in a 45% increase in cross-departmental communication and higher talent retention.\n9. **UC Irvine / Wall Street Journal Focus Study**: Benchmark study showing open-plan office interruptions cost 23 minutes and 15 seconds to regain deep task focus — costing organizations up to $28,000 per employee per year in lost billable productivity.\n10. **Gensler Workplace Index (Acoustic Focus & Retention)**: Companies providing high-STC acoustic focus zones alongside collaborative hubs exhibit 21% higher cognitive performance scores and 18% lower voluntary employee turnover.\n11. **Steelcase Flex Agile Teams Study**: High-performing, cross-functional teams equipped with adaptable furniture and spatial reconfigurability are 5x more likely to be high-performing and profitable compared to static setups.\n12. **Accenture (\"Productive Anywhere\" Benchmark)**: Organizations optimizing hybrid spatial infrastructure retain 85% of high-value technical talent long-term, outperforming industry peers in revenue growth by 15%.\n13. **BMW Research & Innovation Center**: Implemented modular acoustic micro-hubs for engineering sprint teams — reduced prototype design error rates by 14% and shortened vehicle software release cycles.\n14. **Roche Pharmaceuticals (Agile Spatial Transformation)**: Redesigned R&D laboratories with flexible collaboration pods and quiet analysis sanctuaries — accelerated cross-functional clinical trial alignment by 25%.\n15. **Capital One Financial (Tech & AI Operations Hub)**: Integrated acoustic sound masking and reconfigurable team war rooms — lowered employee burnout rates by 30% and increased software engineering throughput.",
-    "footnotesReferenceHtml": "<div class=\"footnotes-box\">\n  <h4>📚 Cited Sources & Benchmark Research References</h4>\n  <ol class=\"footnotes-list\">\n    <li id=\"fn-uc-irvine\"><strong>UC Irvine / Wall Street Journal Focus Study:</strong> Workplace interruption study demonstrating 23min 15sec task-switching recovery overhead per interruption ($28,000/employee/year in lost billable output). <a href=\"https://www.ics.uci.edu/~gmark/\" target=\"_blank\" rel=\"noopener noreferrer\">UC Irvine Research</a> | <a href=\"https://www.wsj.com\" target=\"_blank\" rel=\"noopener noreferrer\">WSJ Analysis</a></li>\n    <li id=\"fn-sap\"><strong>SAP Workplace Health Index Benchmark:</strong> Enterprise spatial and well-being study showing each 1% increase in index yields $90M–$100M in annual operating profit gain. <a href=\"https://www.sap.com\" target=\"_blank\" rel=\"noopener noreferrer\">SAP Enterprise Study</a></li>\n    <li id=\"fn-cisco\"><strong>Cisco PENN 1 & Osaka Hybrid Workspace Blueprint:</strong> Office redesign achieving a 40% increase in collaboration zones, 13% workstation capacity gain in 36% less footprint, and $1.2M lease/energy savings. <a href=\"https://www.cisco.com/c/en/us/solutions/hybrid-work/penn-1.html\" target=\"_blank\" rel=\"noopener noreferrer\">Cisco PENN 1 Blueprint</a></li>\n    <li id=\"fn-microsoft\"><strong>Microsoft Modern AI Workplace Study:</strong> Reengineered AI co-creation workspaces reducing task-switching overhead, eliminating 1.2 hrs/day of redundant sync meetings, and boosting developer velocity by 22%. <a href=\"https://www.steelcase.com/research/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase WorkSpace Research</a></li>\n    <li id=\"fn-gensler\"><strong>Gensler Workplace Index (Acoustic Focus & Retention):</strong> Companies providing high-STC acoustic focus zones exhibit 21% higher cognitive performance scores and 18% lower voluntary turnover. <a href=\"https://www.gensler.com/gri/global-workplace-survey-2024\" target=\"_blank\" rel=\"noopener noreferrer\">Gensler Survey</a></li>\n    <li id=\"fn-paris-worklife\"><strong>Steelcase Paris WorkLife Hybrid Lab:</strong> Technology-enabled video and acoustic focus pods resulting in a 13% direct gain in daily productivity and a 28% increase in workplace satisfaction. <a href=\"https://www.steelcase.com/research/articles/topics/hybrid-work/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase Hybrid Work Lab</a></li>\n    <li id=\"fn-iima\"><strong>IIMA Ventures Startup Accelerator Case Study:</strong> Steelcase morphable Maker Labs and mobile acoustic boundaries enabled a 35% acceleration in product iteration cycles. <a href=\"https://swiy.co/Steelcase-community-based-design\" target=\"_blank\" rel=\"noopener noreferrer\">Community-Based Design Case Study</a></li>\n    <li id=\"fn-flex-agile\"><strong>Steelcase Flex Agile Teams Study:</strong> High-performing cross-functional teams equipped with adaptable furniture and spatial reconfigurability are 5x more likely to be high-performing and profitable. <a href=\"https://www.steelcase.com/research/articles/topics/privacy/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase Flex Agile Teams Study</a></li>\n    <li id=\"fn-mckinsey\"><strong>McKinsey & Company State of AI & Future of Work Report:</strong> Global AI deployment benchmark detailing generative AI productivity curves and spatial collaboration requirements. <a href=\"https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai\" target=\"_blank\" rel=\"noopener noreferrer\">McKinsey AI Report</a></li>\n    <li id=\"fn-gartner\"><strong>Gartner Digital Workplace & Smart Office Analytics:</strong> Analytics on smart office sensors, acoustic isolation, and agile pod density. <a href=\"https://www.gartner.com/en/information-technology/insights/digital-workplace\" target=\"_blank\" rel=\"noopener noreferrer\">Gartner Digital Workplace</a></li>\n    <li id=\"fn-hbr\"><strong>Harvard Business Review & BCG Generative AI Productivity Study:</strong> Empirical research on AI-assisted team output, task quality gains, and project velocity acceleration. <a href=\"https://hbr.org/topic/subject/ai-and-machine-learning\" target=\"_blank\" rel=\"noopener noreferrer\">HBR AI Research</a></li>\n    <li id=\"fn-steelcase-privacy\"><strong>Steelcase Privacy & Acoustic Pods Research:</strong> Applied environmental study on acoustic transmission class (STC 38+), speech privacy, and focus recovery in open-plan spaces. <a href=\"https://www.steelcase.com/research/articles/topics/privacy/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase Acoustic Privacy Guide</a> | <a href=\"https://www.steelcase.com/products/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase Products</a></li>\n  </ol>\n</div>",
+    "footnotesReferenceHtml": "<div class=\"footnotes-box\">\n  <h4>📚 Cited Sources &amp; Benchmark Research References</h4>\n  <ol class=\"footnotes-list\">\n    <li id=\"fn-uc-irvine\"><strong>UC Irvine / Wall Street Journal Focus Study:</strong> Workplace interruption study demonstrating 23min 15sec task-switching recovery overhead per interruption ($28,000/employee/year in lost billable output). <a href=\"https://www.ics.uci.edu/~gmark/\" target=\"_blank\" rel=\"noopener noreferrer\">UC Irvine Research</a> | <a href=\"https://www.wsj.com\" target=\"_blank\" rel=\"noopener noreferrer\">WSJ Analysis</a></li>\n    <li id=\"fn-sap\"><strong>SAP Workplace Health Index Benchmark:</strong> Enterprise spatial and well-being study showing each 1% increase in index yields $90M–$100M in annual operating profit gain. <a href=\"https://www.sap.com\" target=\"_blank\" rel=\"noopener noreferrer\">SAP Enterprise Study</a></li>\n    <li id=\"fn-cisco\"><strong>Cisco PENN 1 &amp; Osaka Hybrid Workspace Blueprint:</strong> Office redesign achieving a 40% increase in collaboration zones, 13% workstation capacity gain in 36% less footprint, and $1.2M lease/energy savings. <a href=\"https://www.cisco.com/c/en/us/solutions/hybrid-work/penn-1.html\" target=\"_blank\" rel=\"noopener noreferrer\">Cisco PENN 1 Blueprint</a></li>\n    <li id=\"fn-microsoft\"><strong>Microsoft Modern AI Workplace Study:</strong> Reengineered AI co-creation workspaces reducing task-switching overhead, eliminating 1.2 hrs/day of redundant sync meetings, and boosting developer velocity by 22%. <a href=\"https://www.steelcase.com/research/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase WorkSpace Research</a></li>\n    <li id=\"fn-gensler\"><strong>Gensler Workplace Index (Acoustic Focus &amp; Retention):</strong> Companies providing high-STC acoustic focus zones exhibit 21% higher cognitive performance scores and 18% lower voluntary turnover. <a href=\"https://www.gensler.com/gri/global-workplace-survey-2024\" target=\"_blank\" rel=\"noopener noreferrer\">Gensler Survey</a></li>\n    <li id=\"fn-paris-worklife\"><strong>Steelcase Paris WorkLife Hybrid Lab:</strong> Technology-enabled video and acoustic focus pods resulting in a 13% direct gain in daily productivity and a 28% increase in workplace satisfaction. <a href=\"https://www.steelcase.com/research/articles/topics/hybrid-work/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase Hybrid Work Lab</a></li>\n    <li id=\"fn-iima\"><strong>IIMA Ventures Startup Accelerator Case Study:</strong> Steelcase morphable Maker Labs and mobile acoustic boundaries enabled a 35% acceleration in product iteration cycles. <a href=\"https://swiy.co/Steelcase-community-based-design\" target=\"_blank\" rel=\"noopener noreferrer\">Community-Based Design Case Study</a></li>\n    <li id=\"fn-flex-agile\"><strong>Steelcase Flex Agile Teams Study:</strong> High-performing cross-functional teams equipped with adaptable furniture and spatial reconfigurability are 5x more likely to be high-performing and profitable. <a href=\"https://www.steelcase.com/research/articles/topics/privacy/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase Flex Agile Teams Study</a></li>\n    <li id=\"fn-mckinsey\"><strong>McKinsey &amp; Company State of AI &amp; Future of Work Report:</strong> Global AI deployment benchmark detailing generative AI productivity curves and spatial collaboration requirements. <a href=\"https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai\" target=\"_blank\" rel=\"noopener noreferrer\">McKinsey AI Report</a></li>\n    <li id=\"fn-gartner\"><strong>Gartner Digital Workplace &amp; Smart Office Analytics:</strong> Analytics on smart office sensors, acoustic isolation, and agile pod density. <a href=\"https://www.gartner.com/en/information-technology/insights/digital-workplace\" target=\"_blank\" rel=\"noopener noreferrer\">Gartner Digital Workplace</a></li>\n    <li id=\"fn-hbr\"><strong>Harvard Business Review &amp; BCG Generative AI Productivity Study:</strong> Empirical research on AI-assisted team output, task quality gains, and project velocity acceleration. <a href=\"https://hbr.org/topic/subject/ai-and-machine-learning\" target=\"_blank\" rel=\"noopener noreferrer\">HBR AI Research</a></li>\n    <li id=\"fn-steelcase-privacy\"><strong>Steelcase Privacy &amp; Acoustic Pods Research:</strong> Applied environmental study on acoustic transmission class (STC 38+), speech privacy, and focus recovery in open-plan spaces. <a href=\"https://www.steelcase.com/research/articles/topics/privacy/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase Acoustic Privacy Guide</a> | <a href=\"https://www.steelcase.com/products/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase Products</a></li>\n  </ol>\n</div>",
     "ragFiles": [],
     "ragLinks": []
   },
@@ -690,7 +767,7 @@
     let currentStep = 0;
     let isTransitioning = false;
     let answers = {};
-    let lead = { name: '', email: '', company: '', role: '', projectStatus: '' };
+    let lead = { name: '', email: '', company: '', role: '', phone: '', projectStatus: '', customAnswers: {} };
     let isApplied = false;
     let telSent = false;
 
@@ -781,7 +858,171 @@
         `;
       } else if (currentStep === totalQuestions) {
         // Gate Step
-        const isFreeEmail = lead.email && lead.email.includes('@') && !isWorkEmail(lead.email);
+        const leadCfg = QUIZ_CONFIG.leadCapture || {};
+        const isHubSpot = leadCfg.formType === 'hubspot' && leadCfg.hubspot?.portalId && leadCfg.hubspot?.formId;
+
+        if (isHubSpot) {
+          mainCard.innerHTML = `
+            <div class="question-head">
+              <h2>Generate Your Diagnostic Report</h2>
+              <p style="color:#5F6368; margin-top:8px;">Data collection complete. Please complete the form below to unlock and generate your customized readiness diagnostic report.</p>
+            </div>
+            <div id="hubspot-gate-form-container" style="background:#FFFFFF; border:1px solid #E5E7EB; border-radius:8px; padding:20px; margin-bottom:20px; min-height:220px;">
+              <div style="text-align:center; padding:30px; color:#6B7280;">
+                <span class="spinner" style="width:20px; height:20px; border-width:3px; margin:0 auto 10px; display:block;"></span>
+                Loading official HubSpot form...
+              </div>
+            </div>
+            <div class="nav-row">
+              <button type="button" class="btn btn-secondary" onclick="prevStep()">← Back</button>
+              <div></div>
+            </div>
+          `;
+
+          // Dynamically load HubSpot forms script if not already present
+          const loadHsForm = function() {
+            if (window.hbspt && window.hbspt.forms) {
+              const target = document.getElementById('hubspot-gate-form-container');
+              if (target) target.innerHTML = '';
+              window.hbspt.forms.create({
+                region: leadCfg.hubspot.region || "na1",
+                portalId: leadCfg.hubspot.portalId,
+                formId: leadCfg.hubspot.formId,
+                target: "#hubspot-gate-form-container",
+                onFormSubmitted: async function($form) {
+                  // If form submitted, proceed to result step
+                  await sendWebhook({
+                    action: 'submit',
+                    provider: 'hubspot',
+                    portalId: leadCfg.hubspot.portalId,
+                    formId: leadCfg.hubspot.formId,
+                    answers: getAnswerLabels(),
+                    score: calculateScore(),
+                    timestamp: new Date().toISOString()
+                  });
+                  currentStep++;
+                  render();
+                }
+              });
+            } else {
+              const script = document.createElement('script');
+              script.src = '//js.hsforms.net/forms/embed/v2.js';
+              script.charset = 'utf-8';
+              script.type = 'text/javascript';
+              script.onload = loadHsForm;
+              document.body.appendChild(script);
+            }
+          };
+
+          setTimeout(loadHsForm, 50);
+          return;
+        }
+
+        const fieldsCfg = leadCfg.fields || {};
+        const requireWork = leadCfg.requireWorkEmail !== false;
+        const isFreeEmail = requireWork && lead.email && lead.email.includes('@') && !isWorkEmail(lead.email);
+
+        var formFieldsHtml = '';
+        if (fieldsCfg.name?.enabled !== false) {
+          formFieldsHtml += '<div class="form-group">' +
+            '<label>' + escapeHtml(fieldsCfg.name?.label || "Full Name") + (fieldsCfg.name?.required !== false ? ' *' : '') + '</label>' +
+            '<input id="lead-name" ' + (fieldsCfg.name?.required !== false ? 'required' : '') + ' placeholder="e.g. Jane Doe" value="' + escapeHtml(lead.name || '') + '" oninput="lead.name=this.value; checkCanProceed();" />' +
+            '</div>';
+        }
+
+        if (fieldsCfg.email?.enabled !== false) {
+          formFieldsHtml += '<div class="form-group">' +
+            '<label>' + escapeHtml(fieldsCfg.email?.label || "Work Email") + (fieldsCfg.email?.required !== false ? ' *' : '') + '</label>' +
+            '<input type="email" id="lead-email" ' + (fieldsCfg.email?.required !== false ? 'required' : '') + ' placeholder="name@company.com" value="' + escapeHtml(lead.email || '') + '" oninput="handleEmailInput(this.value);" style="border-color: ' + (isFreeEmail ? '#EF4444' : '#DADCE0') + ';" />' +
+            '<div id="email-error-msg" style="display: ' + (isFreeEmail ? 'block' : 'none') + '; font-size:12px; color:#DC2626; margin-top:6px; font-weight:500;">' +
+            '⚠️ Please enter your official work email. Personal accounts (Gmail, Yahoo, Hotmail, etc.) are not accepted.' +
+            '</div></div>';
+        }
+
+        if (fieldsCfg.company?.enabled !== false) {
+          formFieldsHtml += '<div class="form-group">' +
+            '<label>' + escapeHtml(fieldsCfg.company?.label || "Company") + (fieldsCfg.company?.required !== false ? ' *' : '') + '</label>' +
+            '<input id="lead-company" ' + (fieldsCfg.company?.required !== false ? 'required' : '') + ' placeholder="e.g. Steelcase Inc." value="' + escapeHtml(lead.company || '') + '" oninput="lead.company=this.value; checkCanProceed();" />' +
+            '</div>';
+        }
+
+        if (fieldsCfg.role?.enabled !== false) {
+          formFieldsHtml += '<div class="form-group">' +
+            '<label>' + escapeHtml(fieldsCfg.role?.label || "Job Title / Role") + (fieldsCfg.role?.required === true ? ' *' : '') + '</label>' +
+            '<input id="lead-role" ' + (fieldsCfg.role?.required === true ? 'required' : '') + ' placeholder="e.g. Director of Real Estate & Workplace" value="' + escapeHtml(lead.role || '') + '" oninput="lead.role=this.value; checkCanProceed();" />' +
+            '</div>';
+        }
+
+        if (fieldsCfg.phone?.enabled === true) {
+          formFieldsHtml += '<div class="form-group">' +
+            '<label>' + escapeHtml(fieldsCfg.phone?.label || "Direct Phone") + (fieldsCfg.phone?.required === true ? ' *' : '') + '</label>' +
+            '<input type="tel" id="lead-phone" ' + (fieldsCfg.phone?.required === true ? 'required' : '') + ' placeholder="+1 (555) 000-0000" value="' + escapeHtml(lead.phone || '') + '" oninput="lead.phone=this.value; checkCanProceed();" />' +
+            '</div>';
+        }
+
+        if (fieldsCfg.projectStatus?.enabled !== false) {
+          formFieldsHtml += '<div class="form-group" style="grid-column: span 2;">' +
+            '<label style="display:block; font-size:13px; font-weight:600; color:#202124; margin-bottom:8px;">' +
+            escapeHtml(fieldsCfg.projectStatus?.label || "What best describes your current workplace project status?") + (fieldsCfg.projectStatus?.required !== false ? ' *' : '') +
+            '</label>' +
+            '<select id="lead-status" ' + (fieldsCfg.projectStatus?.required !== false ? 'required' : '') + ' onchange="lead.projectStatus=this.value; checkCanProceed();" style="width:100%; padding:10px 14px; border:1px solid #DADCE0; border-radius:4px; font-size:14px; background-color:white; color:' + (lead.projectStatus ? '#111827' : '#6B7280') + ';">' +
+            '<option value="" ' + (!lead.projectStatus ? 'selected' : '') + ' disabled>-- Select project status --</option>' +
+            '<option value="A - Active project, decisions within 6 months" ' + (lead.projectStatus === "A - Active project, decisions within 6 months" ? 'selected' : '') + '>A - Active project, decisions within 6 months</option>' +
+            '<option value="B - Exploring a project, 6-12 months" ' + (lead.projectStatus === "B - Exploring a project, 6-12 months" ? 'selected' : '') + '>B - Exploring a project, 6-12 months</option>' +
+            '<option value="C - Future project, no timeline yet" ' + (lead.projectStatus === "C - Future project, no timeline yet" ? 'selected' : '') + '>C - Future project, no timeline yet</option>' +
+            '<option value="D - Researching workplace trends and best practices" ' + (lead.projectStatus === "D - Researching workplace trends and best practices" ? 'selected' : '') + '>D - Researching workplace trends and best practices</option>' +
+            '<option value="E - We are Dealer / Architect / Designer / Industry Partner" ' + (lead.projectStatus === "E - We are Dealer / Architect / Designer / Industry Partner" ? 'selected' : '') + '>E - We are Dealer / Architect / Designer / Industry Partner</option>' +
+            '</select>' +
+            '</div>';
+        }
+
+        // Custom Lead Form Questions
+        const customQuestions = Array.isArray(leadCfg.customQuestions) ? leadCfg.customQuestions : [];
+        customQuestions.forEach(function(cq) {
+          if (cq.enabled === false) return;
+          const qId = cq.id;
+          const currentVal = (lead.customAnswers && lead.customAnswers[qId]) !== undefined ? lead.customAnswers[qId] : '';
+          const reqStar = cq.required ? ' *' : '';
+
+          formFieldsHtml += '<div class="form-group" style="grid-column: span 2;">' +
+            '<label style="display:block; font-size:13px; font-weight:600; color:#202124; margin-bottom:8px;">' +
+            escapeHtml(cq.label || 'Intake Question') + reqStar +
+            '</label>';
+
+          if (cq.type === 'select' || !cq.type) {
+            formFieldsHtml += '<select onchange="handleCustomAnswer(\'' + qId + '\', this.value)" style="width:100%; padding:10px 14px; border:1px solid #DADCE0; border-radius:4px; font-size:14px; background-color:white; color:' + (currentVal ? '#111827' : '#6B7280') + ';">' +
+              '<option value="" ' + (!currentVal ? 'selected' : '') + ' disabled>-- Select an option --</option>';
+            (cq.options || []).forEach(function(opt) {
+              formFieldsHtml += '<option value="' + escapeHtml(opt) + '" ' + (currentVal === opt ? 'selected' : '') + '>' + escapeHtml(opt) + '</option>';
+            });
+            formFieldsHtml += '</select>';
+          } else if (cq.type === 'multiple_choice') {
+            formFieldsHtml += '<div style="display:flex; flex-direction:column; gap:8px;">';
+            (cq.options || []).forEach(function(opt) {
+              const isChecked = currentVal === opt;
+              formFieldsHtml += '<label style="display:flex; align-items:center; gap:8px; font-size:13px; color:#374151; background:' + (isChecked ? '#EFF6FF' : '#F9FAFB') + '; border:' + (isChecked ? '1.5px solid #3B82F6' : '1px solid #E5E7EB') + '; padding:8px 12px; border-radius:6px; cursor:pointer;">' +
+                '<input type="radio" name="custom_q_' + qId + '" value="' + escapeHtml(opt) + '" ' + (isChecked ? 'checked' : '') + ' onchange="handleCustomAnswer(\'' + qId + '\', this.value)" style="accent-color:#1D4ED8; cursor:pointer;" />' +
+                '<span>' + escapeHtml(opt) + '</span>' +
+                '</label>';
+            });
+            formFieldsHtml += '</div>';
+          } else if (cq.type === 'text') {
+            formFieldsHtml += '<input type="text" placeholder="' + escapeHtml(cq.placeholder || 'Enter answer...') + '" value="' + escapeHtml(currentVal) + '" oninput="handleCustomAnswer(\'' + qId + '\', this.value)" />';
+          } else if (cq.type === 'number') {
+            formFieldsHtml += '<input type="number" placeholder="' + escapeHtml(cq.placeholder || '0') + '" value="' + escapeHtml(currentVal) + '" oninput="handleCustomAnswer(\'' + qId + '\', this.value)" />';
+          } else if (cq.type === 'rating') {
+            const maxRating = cq.ratingMax || 5;
+            formFieldsHtml += '<div style="display:flex; gap:8px; flex-wrap:wrap;">';
+            for (let r = 1; r <= maxRating; r++) {
+              const isSelected = Number(currentVal) === r;
+              formFieldsHtml += '<button type="button" onclick="handleCustomAnswer(\'' + qId + '\', ' + r + ')" style="width:38px; height:38px; border-radius:6px; border:' + (isSelected ? '2px solid #1D4ED8' : '1px solid #D1D5DB') + '; background:' + (isSelected ? '#1D4ED8' : 'white') + '; color:' + (isSelected ? 'white' : '#374151') + '; font-weight:700; font-size:14px; cursor:pointer; transition:all 0.15s ease;">' + r + '</button>';
+            }
+            formFieldsHtml += '</div>';
+          }
+
+          formFieldsHtml += '</div>';
+        });
+
         mainCard.innerHTML = `
           <div class="question-head">
             <h2>Generate Your Diagnostic Report</h2>
@@ -789,43 +1030,12 @@
           </div>
           <form onsubmit="submitGateForm(event)">
             <div class="form-grid">
-              <div class="form-group">
-                <label>Full Name *</label>
-                <input id="lead-name" required placeholder="e.g. Jane Doe" value="${escapeHtml(lead.name)}" oninput="lead.name=this.value; checkCanProceed();" />
-              </div>
-              <div class="form-group">
-                <label>Work Email *</label>
-                <input type="email" id="lead-email" required placeholder="name@company.com" value="${escapeHtml(lead.email)}" oninput="handleEmailInput(this.value);" style="border-color: ${isFreeEmail ? '#EF4444' : '#DADCE0'};" />
-                <div id="email-error-msg" style="display: ${isFreeEmail ? 'block' : 'none'}; font-size:12px; color:#DC2626; margin-top:6px; font-weight:500;">
-                  ⚠️ Please enter your official work email. Personal accounts (Gmail, Yahoo, Hotmail, etc.) are not accepted.
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Company *</label>
-                <input id="lead-company" required placeholder="e.g. Steelcase Inc." value="${escapeHtml(lead.company)}" oninput="lead.company=this.value; checkCanProceed();" />
-              </div>
-              <div class="form-group">
-                <label>Job Title / Role</label>
-                <input id="lead-role" placeholder="e.g. Director of Real Estate & Workplace" value="${escapeHtml(lead.role)}" oninput="lead.role=this.value" />
-              </div>
-              <div class="form-group" style="grid-column: span 2;">
-                <label style="display:block; font-size:13px; font-weight:600; color:#202124; margin-bottom:8px;">
-                  What best describes your current workplace project status? *
-                </label>
-                <select id="lead-status" required onchange="lead.projectStatus=this.value; checkCanProceed();" style="width:100%; padding:10px 14px; border:1px solid #DADCE0; border-radius:4px; font-size:14px; background-color:white; color:${lead.projectStatus ? '#111827' : '#6B7280'};">
-                  <option value="" ${!lead.projectStatus ? 'selected' : ''} disabled>-- Select project status --</option>
-                  <option value="A - Active project, decisions within 6 months" ${lead.projectStatus === "A - Active project, decisions within 6 months" ? 'selected' : ''}>A - Active project, decisions within 6 months</option>
-                  <option value="B - Exploring a project, 6-12 months" ${lead.projectStatus === "B - Exploring a project, 6-12 months" ? 'selected' : ''}>B - Exploring a project, 6-12 months</option>
-                  <option value="C - Future project, no timeline yet" ${lead.projectStatus === "C - Future project, no timeline yet" ? 'selected' : ''}>C - Future project, no timeline yet</option>
-                  <option value="D - Researching workplace trends and best practices" ${lead.projectStatus === "D - Researching workplace trends and best practices" ? 'selected' : ''}>D - Researching workplace trends and best practices</option>
-                  <option value="E - We are Dealer / Architect / Designer / Industry Partner" ${lead.projectStatus === "E - We are Dealer / Architect / Designer / Industry Partner" ? 'selected' : ''}>E - We are Dealer / Architect / Designer / Industry Partner</option>
-                </select>
-              </div>
+              ${formFieldsHtml}
             </div>
-            <div style="font-size:12px; color:#5F6368; margin-bottom:20px; display:flex; align-items:center; gap:6px;">🔒 Data securely processed. Official work email required.</div>
+            <div style="font-size:12px; color:#5F6368; margin-bottom:20px; display:flex; align-items:center; gap:6px;">🔒 ${requireWork ? "Data securely processed. Official work email required." : "Data securely processed."}</div>
             <div class="nav-row">
               <button type="button" class="btn btn-secondary" onclick="prevStep()">← Back</button>
-              <button type="submit" id="btn-submit-gate" class="btn btn-primary" ${!(lead.name && lead.email && isWorkEmail(lead.email) && lead.company && lead.projectStatus) ? 'disabled' : ''}>Generate Report →</button>
+              <button type="submit" id="btn-submit-gate" class="btn btn-primary" ${!isFormValid() ? 'disabled' : ''}>Generate Report →</button>
             </div>
           </form>
         `;
@@ -834,6 +1044,11 @@
         const score = calculateScore();
         const activeRes = getActiveResult(score);
         const defaultAiReport = generateStaticAiReport(score, lead.company, lead.name);
+        const ctaCfg = QUIZ_CONFIG.ctaConfig || {};
+        const scoreLabel = ctaCfg.scoreLabel ? escapeHtml(ctaCfg.scoreLabel.toUpperCase()) : "OUT OF 100";
+        const primaryText = escapeHtml(ctaCfg.primaryCtaText || "Apply Now");
+        const secondaryText = escapeHtml(ctaCfg.secondaryCtaText || "Add Telephone (Optional)");
+        const isRedirect = ctaCfg.primaryCtaType === 'redirect' && ctaCfg.redirectUrl;
 
         mainCard.innerHTML = `
           <div class="result-grid">
@@ -841,7 +1056,7 @@
               <div class="result-panel" style="background-color: ${activeRes.color};">
                 <div style="font-size:12px; font-weight:600; text-transform:uppercase;">${escapeHtml(activeRes.tone)}</div>
                 <div class="score-display">${score}</div>
-                <div style="font-size:12px; font-weight:600;">OUT OF 100</div>
+                <div style="font-size:12px; font-weight:600;">${scoreLabel}</div>
                 <h2>${escapeHtml(activeRes.title)}</h2>
                 <p style="font-size:14px; line-height:1.6; margin: 0;">${escapeHtml(activeRes.desc)}</p>
               </div>
@@ -853,19 +1068,20 @@
                 <h4 style="margin:0 0 8px; font-size:16px;">Professional Assessment</h4>
                 <p style="font-size:13px; color:#5F6368; margin:0 0 16px;">Schedule a deep-dive session with a workplace strategy specialist.</p>
                 
-                <button class="btn btn-primary" id="btn-apply-cta" onclick="requestAssessment()" style="width:100%; justify-content:center; margin-bottom:12px; background-color: ${isApplied ? '#9CA3AF' : 'var(--primary-color)'}" ${isApplied ? 'disabled' : ''}>
-                  ${isApplied ? '✓ Request Sent' : '✉ Apply Now'}
+                <button class="btn btn-primary" id="btn-apply-cta" onclick="${isRedirect ? "window.open('" + escapeHtml(ctaCfg.redirectUrl) + "', '_blank')" : "requestAssessment()"}" style="width:100%; justify-content:center; margin-bottom:12px; background-color: ${(isApplied && !isRedirect) ? '#9CA3AF' : 'var(--primary-color)'}" ${(isApplied && !isRedirect) ? 'disabled' : ''}>
+                  ${(isApplied && !isRedirect) ? '✓ Request Sent' : '✉ ' + primaryText}
                 </button>
 
-                <div id="tel-box" style="display:${isApplied && !telSent ? 'block' : 'none'}; background:white; padding:16px; border:1px solid #E5E7EB; border-radius:6px; margin-top:12px;">
-                  <label style="font-size:12px; font-weight:600; display:block; margin-bottom:8px;">Add Telephone (Optional)</label>
-                  <div style="display:flex; gap:8px;">
-                    <input type="tel" id="tel-input" placeholder="+1..." style="flex:1; padding:8px 12px; border:1px solid #D1D5DB; border-radius:4px;" />
-                    <button type="button" onclick="submitTel()" class="btn btn-secondary" style="padding:8px 12px;">Send</button>
+                ${ctaCfg.secondaryCtaEnabled !== false ? `
+                  <div id="tel-box" style="display:${isApplied && !telSent && !isRedirect ? 'block' : 'none'}; background:white; padding:16px; border:1px solid #E5E7EB; border-radius:6px; margin-top:12px;">
+                    <label style="font-size:12px; font-weight:600; display:block; margin-bottom:8px;">${secondaryText}</label>
+                    <div style="display:flex; gap:8px;">
+                      <input type="tel" id="tel-input" placeholder="+1..." style="flex:1; padding:8px 12px; border:1px solid #D1D5DB; border-radius:4px;" />
+                      <button type="button" onclick="submitTel()" class="btn btn-secondary" style="padding:8px 12px;">Send</button>
+                    </div>
                   </div>
-                </div>
-
-                <div id="tel-saved-msg" style="display:${telSent ? 'block' : 'none'}; font-size:13px; color:#059669; margin-top:8px;">✓ Phone saved</div>
+                  <div id="tel-saved-msg" style="display:${telSent ? 'block' : 'none'}; font-size:13px; color:#059669; margin-top:8px;">✓ Phone saved</div>
+                ` : ''}
 
                 <div style="font-size:12px; color:#059669; display:flex; align-items:center; gap:6px; justify-content:center; margin-top:12px;">
                   ✓ Qualified for Consultation
@@ -919,9 +1135,11 @@
 
     function handleEmailInput(val) {
       lead.email = val;
+      const leadCfg = QUIZ_CONFIG.leadCapture || {};
+      const requireWork = leadCfg.requireWorkEmail !== false;
       const errEl = document.getElementById('email-error-msg');
       const emailInput = document.getElementById('lead-email');
-      const isFree = val && val.includes('@') && !isWorkEmail(val);
+      const isFree = requireWork && val && val.includes('@') && !isWorkEmail(val);
       if (errEl) {
         errEl.style.display = isFree ? 'block' : 'none';
       }
@@ -931,18 +1149,57 @@
       checkCanProceed();
     }
 
+    function handleCustomAnswer(qId, val) {
+      if (!lead.customAnswers) lead.customAnswers = {};
+      lead.customAnswers[qId] = val;
+      checkCanProceed();
+      // If rating type or radio type, re-render to highlight active choice
+      const leadCfg = QUIZ_CONFIG.leadCapture || {};
+      const cq = (leadCfg.customQuestions || []).find(q => q.id === qId);
+      if (cq && (cq.type === 'rating' || cq.type === 'multiple_choice')) {
+        render();
+      }
+    }
+
+    function isFormValid() {
+      const leadCfg = QUIZ_CONFIG.leadCapture || {};
+      const fields = leadCfg.fields || {};
+      const requireWork = leadCfg.requireWorkEmail !== false;
+      const isEmailValid = requireWork ? isWorkEmail(lead.email) : (lead.email && lead.email.includes('@'));
+
+      if (fields.name?.enabled !== false && fields.name?.required !== false && (!lead.name || !lead.name.trim())) return false;
+      if (fields.email?.enabled !== false && fields.email?.required !== false && (!lead.email || !lead.email.trim() || !isEmailValid)) return false;
+      if (fields.company?.enabled !== false && fields.company?.required !== false && (!lead.company || !lead.company.trim())) return false;
+      if (fields.role?.enabled !== false && fields.role?.required === true && (!lead.role || !lead.role.trim())) return false;
+      if (fields.phone?.enabled === true && fields.phone?.required === true && (!lead.phone || !lead.phone.trim())) return false;
+      if (fields.projectStatus?.enabled !== false && fields.projectStatus?.required !== false && !lead.projectStatus) return false;
+
+      // Validate custom questions
+      if (Array.isArray(leadCfg.customQuestions)) {
+        for (const cq of leadCfg.customQuestions) {
+          if (cq.enabled !== false && cq.required) {
+            const val = lead.customAnswers ? lead.customAnswers[cq.id] : undefined;
+            if (val === undefined || val === null || String(val).trim() === '') {
+              return false;
+            }
+          }
+        }
+      }
+
+      return true;
+    }
+
     function checkCanProceed() {
       const btn = document.getElementById('btn-submit-gate');
       if (btn) {
-        const can = lead.name && lead.email && isWorkEmail(lead.email) && lead.company && lead.projectStatus;
-        btn.disabled = !can;
+        btn.disabled = !isFormValid();
       }
     }
 
     async function submitGateForm(e) {
       e.preventDefault();
-      if (!lead.name || !lead.email || !isWorkEmail(lead.email) || !lead.company || !lead.projectStatus) {
-        alert('Please complete all required fields with your official work email and workplace project status.');
+      if (!isFormValid()) {
+        alert('Please complete all required fields according to instructions.');
         return;
       }
 
@@ -959,8 +1216,10 @@
         email: lead.email,
         company: lead.company,
         role: lead.role,
+        phone: lead.phone,
         projectStatus: lead.projectStatus,
         project_status: lead.projectStatus,
+        customAnswers: lead.customAnswers || {},
         answers: getAnswerLabels(),
         score: calculateScore(),
         timestamp: new Date().toISOString()
