@@ -245,7 +245,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.14
+            Build v1.15
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -334,7 +334,7 @@
     "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
     "tone": "Executive, authoritative, architectural, and data-driven"
   },
-  "buildVersion": "1.14",
+  "buildVersion": "1.15",
   "content": {
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
@@ -348,7 +348,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-22T09:11:04.423Z",
+    "lastPublishedAt": "2026-08-22T10:21:33.574Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/"
   },
   "reportSections": [
@@ -1240,8 +1240,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[18:21:27] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[18:21:27] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[18:34:48] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[18:34:48] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1376,22 +1376,51 @@
 "<p>Write a concluding paragraph suggesting engagement with workplace consultants for a full audit.</p>\n\n" +
 "Return ONLY valid HTML. Do not wrap in markdown or backticks.";
 
-                const aiResp = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=" + cKey, {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({
-                    contents: [{ parts: [{ text: prompt }] }],
-                    tools: [{ googleSearch: {} }]
-                  })
-                });
-                if (aiResp.ok) {
-                  const aiData = await aiResp.json();
-                  let text = aiData.candidates?.[0]?.content?.parts?.[0]?.text || "";
-                  if (text) {
-                    const mdStart = new RegExp('^' + String.fromCharCode(96,96,96) + 'html\\s*', 'i');
-                    const mdEnd = new RegExp(String.fromCharCode(96,96,96) + '\\s*$');
-                    text = text.replace(mdStart, '').replace(mdEnd, '').trim();
-                    window.standaloneAiReport = '<div class="client-ai-report" style="animation: fadeIn 0.5s;">' + text + '</div>';
+                const clientModels = [
+                  "gemini-3.6-flash",
+                  "gemini-3.5-flash",
+                  "gemini-3.5-flash-lite",
+                  "gemini-3.7-flash",
+                  "gemini-3.1-flash-lite",
+                  "gemini-3-flash-preview",
+                  "gemini-flash-latest",
+                  "gemini-flash-lite-latest"
+                ];
+
+                for (const mName of clientModels) {
+                  try {
+                    // 1. Try with Google Search tool
+                    let resp = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + mName + ":generateContent?key=" + cKey, {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }],
+                        tools: [{ googleSearch: {} }]
+                      })
+                    });
+                    if (!resp.ok) {
+                      // 2. Try without Search tool
+                      resp = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + mName + ":generateContent?key=" + cKey, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          contents: [{ parts: [{ text: prompt }] }]
+                        })
+                      });
+                    }
+                    if (resp.ok) {
+                      const aiData = await resp.json();
+                      let text = aiData.candidates?.[0]?.content?.parts?.[0]?.text || "";
+                      if (text) {
+                        const mdStart = new RegExp('^' + String.fromCharCode(96,96,96) + 'html\\s*', 'i');
+                        const mdEnd = new RegExp(String.fromCharCode(96,96,96) + '\\s*$');
+                        text = text.replace(mdStart, '').replace(mdEnd, '').trim();
+                        window.standaloneAiReport = '<div class="client-ai-report" style="animation: fadeIn 0.5s;">' + text + '</div>';
+                        break;
+                      }
+                    }
+                  } catch (mErr) {
+                    console.warn("Client model attempt failed for " + mName + ":", mErr);
                   }
                 }
               } catch (clientErr) {
