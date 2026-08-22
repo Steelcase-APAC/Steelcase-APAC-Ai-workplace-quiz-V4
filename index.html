@@ -245,7 +245,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.08
+            Build v1.09
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -334,7 +334,7 @@
     "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
     "tone": "Executive, authoritative, architectural, and data-driven"
   },
-  "buildVersion": "1.08",
+  "buildVersion": "1.09",
   "content": {
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
@@ -348,7 +348,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-22T07:50:51.475Z",
+    "lastPublishedAt": "2026-08-22T08:14:55.203Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/"
   },
   "reportSections": [
@@ -375,7 +375,7 @@
     {
       "id": "sec2",
       "title": "Section 2",
-      "prompt": "Analyze the user's survey responses and provide deep analytical interpretation of what their readiness score means for spatial performance, acoustic privacy, cognitive focus, and bottom-line productivity.",
+      "prompt": "\"Analyze the provided survey responses alongside the overall score. Perform a web search on the target company and the core topic of this assessment. Synthesize your online findings with the specific survey data to provide a deep, 2-3 paragraph analytical interpretation of what their current status means for their organization. Connect their specific answers to broader industry trends you find online.\"",
       "ragFiles": [],
       "sectionHeading": "Customized Diagnosis",
       "eyebrow": "EXECUTIVE INSIGHTS",
@@ -397,7 +397,7 @@
     {
       "id": "sec4",
       "title": "Section 4",
-      "prompt": "Based on the organization's scores and the uploaded reference material, outline 3 high-impact strategic workplace interventions, architectural configurations, and actionable next steps.",
+      "prompt": "\"Based on the organization's survey responses, score, and the latest industry best practices found via web search, outline 3-4 highly detailed, actionable interventions. For each recommendation, write at least 3-4 sentences explaining the specific intervention, the rationale linked to their survey answers, and the expected impact on their business.\"",
       "ragFiles": [],
       "eyebrow": "SECTION 04"
     },
@@ -1240,8 +1240,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[16:14:50] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[16:14:50] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[16:37:54] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[16:37:54] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1366,11 +1366,11 @@
 "<h3>1. Company Intelligence & Workplace Context</h3>\n" +
 "<p>Write at least 2 to 3 robust paragraphs providing a detailed analysis of " + compStr + " based on your web research. You MUST explicitly mention facts, recent news, and insights you found online about the company. Connect these external facts to their current workplace context.</p>\n" +
 "<h3>2. Technical Score Breakdown</h3>\n" +
-"<p>Provide a comprehensive, multi-paragraph analysis (at least 2 paragraphs) of what a score of " + scoreStr + "/100 means for their specific workplace agility. Tie this directly back to the survey highlights provided.</p>\n" +
+((QUIZ_CONFIG.reportSections && QUIZ_CONFIG.reportSections[1] && QUIZ_CONFIG.reportSections[1].prompt) ? QUIZ_CONFIG.reportSections[1].prompt : "<p>Provide a comprehensive, multi-paragraph analysis (at least 2 paragraphs) of what a score of " + scoreStr + "/100 means for their specific workplace agility. Tie this directly back to the survey highlights provided.</p>") + "\n" +
 "<h3>3. Critical Friction Points</h3>\n" +
 "<ul><li>Identify 3 specific, detailed friction points based on their exact survey answers. Explain WHY these are friction points in 2-3 sentences each.</li></ul>\n" +
 "<h3>4. High-Performance Optimization Roadmap</h3>\n" +
-"<ul><li>Provide 3 highly detailed, actionable spatial/acoustic interventions. Do not be brief. Explain the rationale and expected impact of each intervention in 2-3 sentences each.</li></ul>\n" +
+((QUIZ_CONFIG.reportSections && QUIZ_CONFIG.reportSections[3] && QUIZ_CONFIG.reportSections[3].prompt) ? QUIZ_CONFIG.reportSections[3].prompt : "<ul><li>Provide 3 highly detailed, actionable spatial/acoustic interventions. Do not be brief. Explain the rationale and expected impact of each intervention in 2-3 sentences each.</li></ul>") + "\n" +
 "<h3>5. Executive Next Steps</h3>\n" +
 "<p>Write a concluding paragraph suggesting engagement with workplace consultants for a full audit.</p>\n\n" +
 "Return ONLY valid HTML. Do not wrap in markdown or backticks.";
