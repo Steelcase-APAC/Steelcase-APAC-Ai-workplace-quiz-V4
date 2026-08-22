@@ -355,7 +355,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-22T02:21:47.211Z",
+    "lastPublishedAt": "2026-08-22T02:40:05.217Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/"
   },
   "reportSections": [
@@ -1206,7 +1206,113 @@
       const submitBtn = document.getElementById('btn-submit-gate');
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="spinner"></span> Processing...';
+      }
+
+      // Display multi-stage animated diagnosis engine loader before results
+      const mainCard = document.getElementById('quiz-main-card');
+      if (mainCard) {
+        const thinkingSteps = [
+          "Researching Google intelligence & workplace news...",
+          "Processing survey metrics (0–100 index) & response parameters...",
+          "Analyzing acoustic transmission (STC), spatial adaptability & IT/power infrastructure...",
+          "Formulating diagnostic roadmap and tailored spatial recommendations..."
+        ];
+
+        mainCard.innerHTML = `
+          <div style="padding: 28px; background: #F8FAFC; border-radius: 10px; border: 1.5px solid #DBEAFE; box-shadow: 0 4px 12px rgba(29, 78, 216, 0.04); margin: 20px 0;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; border-bottom: 1px solid #E2E8F0; padding-bottom: 14px;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="spinner" style="width: 24px; height: 24px; border: 3px solid #BFDBFE; border-top-color: #1D4ED8; border-radius: 50%;"></div>
+                <div>
+                  <h4 style="margin: 0; font-size: 15px; font-weight: 700; color: #1E3A8A;">
+                    AI Diagnostic Engine Running
+                  </h4>
+                  <span id="diagnostic-sublabel" style="font-size: 12px; color: #64748B;">
+                    Conducting web research, benchmarking parameters, and drafting report...
+                  </span>
+                </div>
+              </div>
+              <span id="diagnostic-step-badge" style="font-size: 11px; font-weight: 700; background: #DBEAFE; color: #1E40AF; padding: 3px 10px; border-radius: 12px;">
+                Step 1 of 4
+              </span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div style="background: #E2E8F0; height: 6px; borderRadius: 3px; overflow: hidden; margin-bottom: 18px;">
+              <div id="diagnostic-pbar" style="height: 100%; width: 25%; background: linear-gradient(90deg, #3B82F6, #1D4ED8); border-radius: 3px; transition: width 0.6s ease;"></div>
+            </div>
+
+            <div id="diagnostic-steps-container" style="display: flex; flex-direction: column; gap: 10px;">
+              ${thinkingSteps.map((stepText, idx) => `
+                <div id="step-row-${idx}" style="display: flex; align-items: center; gap: 12px; font-size: 13px; color: ${idx === 0 ? '#1D4ED8' : '#94A3B8'}; font-weight: ${idx === 0 ? '600' : '400'}; padding: 10px 14px; background: ${idx === 0 ? '#EFF6FF' : '#FFFFFF'}; border-radius: 6px; border: ${idx === 0 ? '1px solid #BFDBFE' : '1px solid #F1F5F9'};">
+                  ${idx === 0 
+                    ? '<div class="spinner" style="width: 16px; height: 16px; border: 2.5px solid #93C5FD; border-top-color: #1D4ED8; border-radius: 50%;"></div>' 
+                    : '<div style="width: 16px; height: 16px; border-radius: 50%; border: 2px solid #CBD5E1;"></div>'}
+                  <span>${stepText}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+
+        // Cycle through the steps dynamically
+        let currentStepIdx = 0;
+        const stepInterval = setInterval(() => {
+          currentStepIdx++;
+          const badge = document.getElementById('diagnostic-step-badge');
+          const pbar = document.getElementById('diagnostic-pbar');
+          if (badge) badge.innerText = 'Step ' + Math.min(currentStepIdx + 1, 4) + ' of 4';
+          if (pbar) pbar.style.width = Math.min(95, (currentStepIdx + 1) * 25) + '%';
+
+          for (let i = 0; i < 4; i++) {
+            const row = document.getElementById('step-row-' + i);
+            if (!row) continue;
+            if (i < currentStepIdx) {
+              row.style.color = '#059669';
+              row.style.fontWeight = '400';
+              row.style.background = '#F0FDF4';
+              row.style.border = '1px solid #BBF7D0';
+              row.innerHTML = '<span style="color:#059669; font-weight:bold; font-size:16px;">✓</span> <span>' + thinkingSteps[i] + '</span>';
+            } else if (i === currentStepIdx) {
+              row.style.color = '#1D4ED8';
+              row.style.fontWeight = '600';
+              row.style.background = '#EFF6FF';
+              row.style.border = '1px solid #BFDBFE';
+              row.innerHTML = '<div class="spinner" style="width: 16px; height: 16px; border: 2.5px solid #93C5FD; border-top-color: #1D4ED8; border-radius: 50%;"></div> <span>' + thinkingSteps[i] + '</span>';
+            } else {
+              row.style.color = '#94A3B8';
+              row.style.fontWeight = '400';
+              row.style.background = '#FFFFFF';
+              row.style.border = '1px solid #F1F5F9';
+              row.innerHTML = '<div style="width: 16px; height: 16px; border-radius: 50%; border: 2px solid #CBD5E1;"></div> <span>' + thinkingSteps[i] + '</span>';
+            }
+          }
+        }, 1200);
+
+        // Run webhook in parallel
+        sendWebhook({
+          action: 'submit',
+          lead: lead,
+          name: lead.name,
+          email: lead.email,
+          company: lead.company,
+          role: lead.role,
+          phone: lead.phone,
+          projectStatus: lead.projectStatus,
+          project_status: lead.projectStatus,
+          customAnswers: lead.customAnswers || {},
+          answers: getAnswerLabels(),
+          score: calculateScore(),
+          timestamp: new Date().toISOString()
+        }).catch(err => console.error("Webhook error:", err));
+
+        // After completing the steps, transition to results
+        setTimeout(() => {
+          clearInterval(stepInterval);
+          currentStep++;
+          render();
+        }, 4800);
+        return;
       }
 
       await sendWebhook({
