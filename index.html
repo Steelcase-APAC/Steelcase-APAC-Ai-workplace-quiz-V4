@@ -245,7 +245,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.22
+            Build v1.23
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -334,7 +334,7 @@
     "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
     "tone": "Executive, authoritative, architectural, and data-driven"
   },
-  "buildVersion": "1.22",
+  "buildVersion": "1.23",
   "content": {
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
@@ -348,7 +348,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-22T11:49:27.791Z",
+    "lastPublishedAt": "2026-08-22T11:56:46.638Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
     "modelFallbacks": [
       "gemini-3.5-flash",
@@ -1247,8 +1247,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[19:56:41] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[19:56:41] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[20:25:58] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[20:25:58] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1601,11 +1601,11 @@
         html += '<p class="section-desc">' + escapeHtml(s2.description) + '</p>';
       }
       html += '<div class="top-insights-box" style="margin-top: 12px; margin-bottom: 16px;">';
-      html += '<h3 style="margin-top:0; color:#1E3A8A; font-size:16px; font-weight:700;">🎯 Diagnostic Index Analysis (' + score + '/100 Index)</h3>';
+      html += '<h3 style="margin-top:0; color:#1E3A8A; font-size:16px; font-weight:700;">🎯 Workplace Spatial & Acoustic Diagnosis for ' + compStr + '</h3>';
       html += '<ol>';
-      html += '<li><strong>Baseline Readiness for ' + compStr + ':</strong> Your overall readiness score of <strong>' + score + '/100</strong> indicates key spatial and acoustic considerations during generative AI task-switching <span class="cite-ref"><a href="#fn-uc-irvine" class="cite-badge">[UC Irvine Study]</a></span>.</li>';
-      html += '<li><strong>Spatial & Focus Analysis:</strong> Uncontained voice prompting in open plan zones introduces severe cognitive task-switching latency. Integrating high-STC acoustic focus zones recovers deep productivity for ' + compStr + ' <span class="cite-ref"><a href="#fn-steelcase-privacy" class="cite-badge">[Steelcase Research]</a></span>.</li>';
-      html += '<li><strong>Operational Impact:</strong> Modern hybrid workflows require STC 38+ acoustic enclosures to protect focus and sustain high-velocity software delivery <span class="cite-ref"><a href="#fn-flex-agile" class="cite-badge">[Flex Agile Study]</a></span>.</li>';
+      html += '<li><strong>Baseline Readiness for ' + compStr + ':</strong> Your overall readiness score of <strong>' + score + '/100</strong> indicates key vulnerabilities where open-space acoustic distraction limits AI prompting.</li>';
+      html += '<li><strong>Spatial & Focus Analysis:</strong> Uncontained voice prompting introduces severe cognitive task-switching latency. Integrating high-STC acoustic focus zones recovers deep productivity for ' + compStr + '.</li>';
+      html += '<li><strong>Operational Impact:</strong> Modern hybrid workflows require dedicated acoustic enclosures to protect focus and sustain high-velocity software delivery.</li>';
       html += '</ol></div></div>';
 
       // Section 3: Title, description, left image, right text box
@@ -1634,11 +1634,11 @@
         html += '<p class="section-desc">' + escapeHtml(s4.description) + '</p>';
       }
       html += '<div style="margin-top: 12px; padding: 20px 24px; background:#F0FDF4; border:1px solid #BBF7D0; border-left: 5px solid #16A34A; border-radius:8px;">';
-      html += '<h3 style="margin-top:0; color:#14532D; font-size:15px; font-weight:700;">🚀 Strategic Recommendations & Spatial Interventions</h3>';
+      html += '<h3 style="margin-top:0; color:#14532D; font-size:15px; font-weight:700;">🚀 Tailored Spatial Optimization & Implementation Plan</h3>';
       html += '<p style="font-size:13.5px; color:#166534; line-height:1.6; margin-bottom:12px;"><strong>Actionable Spatial Interventions:</strong> High-impact spatial roadmap tailored to ' + compStr + '\'s readiness score and team parameters:</p>';
       html += '<ul style="margin:0; padding-left:20px; font-size:13.5px; line-height:1.6; color:#14532D;">';
-      html += '<li><strong>Deploy Acoustically Rated Focus Pods:</strong> Isolate intensive voice prompting workflows using certified STC 38+ pods <span class="cite-ref"><a href="#fn-cisco" class="cite-badge">[Cisco Blueprint]</a></span>.</li>';
-      html += '<li><strong>Adopt Flexible Reconfigurable Zones:</strong> Implement modular partitions and agile furniture to support quick pivots between solo prompting and team syncs <span class="cite-ref"><a href="#fn-microsoft" class="cite-badge">[Microsoft Research]</a></span>.</li>';
+      html += '<li><strong>Deploy Acoustically Rated Focus Pods:</strong> Isolate intensive voice prompting workflows using certified STC 38+ pods.</li>';
+      html += '<li><strong>Adopt Flexible Reconfigurable Zones:</strong> Implement modular partitions and agile furniture to support quick pivots between solo prompting and team syncs.</li>';
       html += '<li><strong>Power & Infrastructure Optimization:</strong> Install drop-down power poles and underfloor channels to eliminate cabling clutter in collaborative zones.</li>';
       html += '</ul></div></div>';
 
