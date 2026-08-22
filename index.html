@@ -355,7 +355,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-22T06:17:15.474Z",
+    "lastPublishedAt": "2026-08-22T06:29:37.727Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/"
   },
   "reportSections": [
@@ -1235,6 +1235,21 @@
               <span id="diagnostic-step-badge" style="font-size: 11px; font-weight: 700; background: #DBEAFE; color: #1E40AF; padding: 3px 10px; border-radius: 12px;">
                 Step 1 of 4
               </span>
+            </div>
+
+            <!-- AI Thinking & Execution Console Box -->
+            <div style="background: #0F172A; color: #E2E8F0; border-radius: 8px; padding: 12px 14px; margin-bottom: 16px; font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11.5px; line-height: 1.6; border: 1px solid #1E293B; max-height: 130px; overflow-y: auto; box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px solid #1E293B; padding-bottom: 6px; color: #94A3B8; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">
+                <span style="display: flex; align-items: center; gap: 6px;">
+                  <span style="width: 7px; height: 7px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 6px #22C55E;"></span>
+                  AI Thinking & System Quota Diagnostics
+                </span>
+                <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
+              </div>
+              <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
+                <div style="color: #CBD5E1;">[14:41:29] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[14:41:29] [Client Engine] Connecting to AI model endpoint...</div>
+              </div>
             </div>
 
             <!-- Progress Bar -->
