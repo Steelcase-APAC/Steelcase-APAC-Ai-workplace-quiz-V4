@@ -245,7 +245,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.12
+            Build v1.13
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -334,7 +334,7 @@
     "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
     "tone": "Executive, authoritative, architectural, and data-driven"
   },
-  "buildVersion": "1.12",
+  "buildVersion": "1.13",
   "content": {
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
@@ -348,7 +348,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-22T08:59:23.650Z",
+    "lastPublishedAt": "2026-08-22T09:06:02.102Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/"
   },
   "reportSections": [
@@ -375,7 +375,7 @@
     {
       "id": "sec2",
       "title": "Section 2",
-      "prompt": "\"Analyze the provided survey responses alongside the overall score. Perform a web search on the target company and the core topic of this assessment. Synthesize your online findings with the specific survey data to provide a deep, 2-3 paragraph analytical interpretation of what their current status means for their organization. Connect their specific answers to broader industry trends you find online.\"",
+      "prompt": "Analyze the provided survey responses alongside the overall score. Perform a web search on the target company and the core topic of this assessment. Synthesize your online findings with the specific survey data to provide a deep, 2-3 paragraph analytical interpretation of what their current status means for their organization. Connect their specific answers to broader industry trends you find online.",
       "ragFiles": [],
       "sectionHeading": "Customized Diagnosis",
       "eyebrow": "EXECUTIVE INSIGHTS",
@@ -397,7 +397,7 @@
     {
       "id": "sec4",
       "title": "Section 4",
-      "prompt": "\"Based on the organization's survey responses, score, and the latest industry best practices found via web search, outline 3-4 highly detailed, actionable interventions. For each recommendation, write at least 3-4 sentences explaining the specific intervention, the rationale linked to their survey answers, and the expected impact on their business.\"",
+      "prompt": "Based on the organization's survey responses, score, and the latest industry best practices found via web search, outline 3-4 highly detailed, actionable interventions. For each recommendation, write at least 3-4 sentences explaining the specific intervention, the rationale linked to their survey answers, and the expected impact on their business.",
       "ragFiles": [],
       "eyebrow": "SECTION 04"
     },
@@ -1240,8 +1240,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[17:05:57] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[17:05:57] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[17:11:00] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[17:11:00] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1356,46 +1356,24 @@
                   }
                 }
                 const qText = slimAnswers || "No significant deviations noted.";
-                const prompt = "You are a Senior Workplace Strategy Architect.
-" +
-"Task: Write a comprehensive, personalized 5-section diagnostic report for a company named "" + compStr + "".
-" +
-"Survey Score: " + scoreStr + "/100.
-" +
-"Key Survey Highlights:
-" + qText + "
-
-" +
-"CRITICAL INSTRUCTION: You MUST perform a Google Search on '" + compStr + "' to gather their latest news, recent real estate decisions, employee return-to-office mandates, or workplace strategies. Your analysis MUST incorporate specific facts, quotes, or recent events found online about this exact company.
-" +
-"DO NOT ECHO OR QUOTE ANY PROMPT DIRECTIVES OR INSTRUCTIONS IN YOUR FINAL HTML OUTPUT.
-
-" +
-"Generate a highly detailed, professional HTML diagnostic report for this company.
-" +
-"Include these EXACT sections wrapped in HTML tags:
-" +
-"<h3>1. Company Intelligence & Workplace Context</h3>
-" +
-"<p>Write at least 2 to 3 robust paragraphs providing a detailed analysis of " + compStr + " based on your web research. You MUST explicitly mention facts, recent news, and insights you found online about the company. Connect these external facts to their current workplace context.</p>
-" +
-"<h3>2. Technical Score Breakdown</h3>
-" +
-"<p>[SECTION 2 DIRECTIVE - DO NOT ECHO: Provide a multi-paragraph analytical breakdown of what a score of " + scoreStr + "/100 means for " + compStr + "'s workplace agility. " + ((QUIZ_CONFIG.reportSections && QUIZ_CONFIG.reportSections[1] && QUIZ_CONFIG.reportSections[1].prompt) ? QUIZ_CONFIG.reportSections[1].prompt : "") + "]</p>
-" +
-"<h3>3. Critical Friction Points</h3>
-" +
-"<ul><li>Identify 3 specific, detailed friction points based on their exact survey answers. Explain WHY these are friction points in 2-3 sentences each.</li></ul>
-" +
-"<h3>4. High-Performance Optimization Roadmap</h3>
-" +
-"<p>[SECTION 4 DIRECTIVE - DO NOT ECHO: Provide 3-4 actionable spatial/acoustic interventions for " + compStr + ". " + ((QUIZ_CONFIG.reportSections && QUIZ_CONFIG.reportSections[3] && QUIZ_CONFIG.reportSections[3].prompt) ? QUIZ_CONFIG.reportSections[3].prompt : "") + "]</p>
-" +
-"<h3>5. Executive Next Steps</h3>
-" +
-"<p>Write a concluding paragraph suggesting engagement with workplace consultants for a full audit.</p>
-
-" +
+                const prompt = "You are a Senior Workplace Strategy Architect.\n" +
+"Task: Write a comprehensive, personalized 5-section diagnostic report for a company named \"" + compStr + "\".\n" +
+"Survey Score: " + scoreStr + "/100.\n" +
+"Key Survey Highlights:\n" + qText + "\n\n" +
+"CRITICAL INSTRUCTION: You MUST perform a Google Search on '" + compStr + "' to gather their latest news, recent real estate decisions, employee return-to-office mandates, or workplace strategies. Your analysis MUST incorporate specific facts, quotes, or recent events found online about this exact company.\n" +
+"DO NOT ECHO OR QUOTE ANY PROMPT DIRECTIVES OR INSTRUCTIONS IN YOUR FINAL HTML OUTPUT.\n\n" +
+"Generate a highly detailed, professional HTML diagnostic report for this company.\n" +
+"Include these EXACT sections wrapped in HTML tags:\n" +
+"<h3>1. Company Intelligence & Workplace Context</h3>\n" +
+"<p>Write at least 2 to 3 robust paragraphs providing a detailed analysis of " + compStr + " based on your web research. You MUST explicitly mention facts, recent news, and insights you found online about the company. Connect these external facts to their current workplace context.</p>\n" +
+"<h3>2. Technical Score Breakdown</h3>\n" +
+"<p>[SECTION 2 DIRECTIVE - DO NOT ECHO: Provide a multi-paragraph analytical breakdown of what a score of " + scoreStr + "/100 means for " + compStr + "'s workplace agility. " + ((QUIZ_CONFIG.reportSections && QUIZ_CONFIG.reportSections[1] && QUIZ_CONFIG.reportSections[1].prompt) ? QUIZ_CONFIG.reportSections[1].prompt : "") + "]</p>\n" +
+"<h3>3. Critical Friction Points</h3>\n" +
+"<ul><li>Identify 3 specific, detailed friction points based on their exact survey answers. Explain WHY these are friction points in 2-3 sentences each.</li></ul>\n" +
+"<h3>4. High-Performance Optimization Roadmap</h3>\n" +
+"<p>[SECTION 4 DIRECTIVE - DO NOT ECHO: Provide 3-4 actionable spatial/acoustic interventions for " + compStr + ". " + ((QUIZ_CONFIG.reportSections && QUIZ_CONFIG.reportSections[3] && QUIZ_CONFIG.reportSections[3].prompt) ? QUIZ_CONFIG.reportSections[3].prompt : "") + "]</p>\n" +
+"<h3>5. Executive Next Steps</h3>\n" +
+"<p>Write a concluding paragraph suggesting engagement with workplace consultants for a full audit.</p>\n\n" +
 "Return ONLY valid HTML. Do not wrap in markdown or backticks.";
 
                 const aiResp = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + cKey, {
@@ -1622,7 +1600,7 @@
       }
       html += '<div style="margin-top: 12px; padding: 20px 24px; background:#F0FDF4; border:1px solid #BBF7D0; border-left: 5px solid #16A34A; border-radius:8px;">';
       html += '<h3 style="margin-top:0; color:#14532D; font-size:15px; font-weight:700;">🚀 Strategic Recommendations & Spatial Interventions</h3>';
-      html += '<p style="font-size:13.5px; color:#166534; line-height:1.6; margin-bottom:12px;"><strong>Actionable Spatial Interventions:</strong> High-impact spatial roadmap tailored to ' + compStr + ''s readiness score and team parameters:</p>';
+      html += '<p style="font-size:13.5px; color:#166534; line-height:1.6; margin-bottom:12px;"><strong>Actionable Spatial Interventions:</strong> High-impact spatial roadmap tailored to ' + compStr + '\'s readiness score and team parameters:</p>';
       html += '<ul style="margin:0; padding-left:20px; font-size:13.5px; line-height:1.6; color:#14532D;">';
       html += '<li><strong>Deploy Acoustically Rated Focus Pods:</strong> Isolate intensive voice prompting workflows using certified STC 38+ pods <span class="cite-ref"><a href="#fn-cisco" class="cite-badge">[Cisco Blueprint]</a></span>.</li>';
       html += '<li><strong>Adopt Flexible Reconfigurable Zones:</strong> Implement modular partitions and agile furniture to support quick pivots between solo prompting and team syncs <span class="cite-ref"><a href="#fn-microsoft" class="cite-badge">[Microsoft Research]</a></span>.</li>';
