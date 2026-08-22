@@ -245,7 +245,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.06
+            Build v1.07
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -334,7 +334,7 @@
     "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
     "tone": "Executive, authoritative, architectural, and data-driven"
   },
-  "buildVersion": "1.06",
+  "buildVersion": "1.07",
   "content": {
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
@@ -348,7 +348,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-22T07:13:46.936Z",
+    "lastPublishedAt": "2026-08-22T07:37:25.804Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/"
   },
   "reportSections": [
@@ -1240,8 +1240,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[15:37:21] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[15:37:21] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[15:50:47] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[15:50:47] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1349,41 +1349,22 @@
                 const scoreStr = calculateScore();
                 const compStr = lead.company || "the organization";
                 const qText = JSON.stringify(getAnswerLabels());
-                const prompt = "You are an expert workplace diagnostic AI.
-" +
-"Analyze the following survey data for " + compStr + ". Score: " + scoreStr + "/100.
-" +
-"Survey Answers: " + qText + "
-
-" +
-"Please perform a Google Search on " + compStr + " to gather recent news, office locations, or workplace strategies.
-
-" +
-"Generate a professional HTML diagnostic report for this company.
-" +
-"Include these EXACT sections wrapped in HTML tags:
-" +
-"<h3>1. Company Intelligence & Workplace Context</h3>
-" +
-"<p>Provide a short analysis of " + compStr + " based on web knowledge. explicitly mention facts you found online.</p>
-" +
-"<h3>2. Technical Score Breakdown</h3>
-" +
-"<p>Analyze what " + scoreStr + "/100 means for their workplace agility.</p>
-" +
-"<h3>3. Critical Friction Points</h3>
-" +
-"<ul><li>Identify 3 specific friction points based on their survey answers.</li></ul>
-" +
-"<h3>4. High-Performance Optimization Roadmap</h3>
-" +
-"<ul><li>Provide 3 actionable spatial/acoustic interventions.</li></ul>
-" +
-"<h3>5. Executive Next Steps</h3>
-" +
-"<p>Suggest engaging with workplace consultants for a full audit.</p>
-
-" +
+                const prompt = "You are an expert workplace diagnostic AI.\n" +
+"Analyze the following survey data for " + compStr + ". Score: " + scoreStr + "/100.\n" +
+"Survey Answers: " + qText + "\n\n" +
+"CRITICAL INSTRUCTION: You MUST perform a Google Search on '" + compStr + "' to gather their latest news, recent real estate decisions, employee return-to-office mandates, or workplace strategies. Your analysis MUST incorporate specific facts, quotes, or recent events found online about this exact company.\n\n" +
+"Generate a highly detailed, professional HTML diagnostic report for this company.\n" +
+"Include these EXACT sections wrapped in HTML tags:\n" +
+"<h3>1. Company Intelligence & Workplace Context</h3>\n" +
+"<p>Provide a robust, detailed analysis of " + compStr + " based on your web research. You MUST explicitly mention facts, recent news, and insights you found online about the company. Connect these external facts to their current workplace context.</p>\n" +
+"<h3>2. Technical Score Breakdown</h3>\n" +
+"<p>Provide a comprehensive, multi-paragraph analysis of what a score of " + scoreStr + "/100 means for their specific workplace agility. Tie this directly back to the survey answers provided.</p>\n" +
+"<h3>3. Critical Friction Points</h3>\n" +
+"<ul><li>Identify 3 specific, detailed friction points based on their exact survey answers. Explain WHY these are friction points.</li></ul>\n" +
+"<h3>4. High-Performance Optimization Roadmap</h3>\n" +
+"<ul><li>Provide 3 highly detailed, actionable spatial/acoustic interventions. Do not be brief. Explain the rationale and expected impact of each intervention.</li></ul>\n" +
+"<h3>5. Executive Next Steps</h3>\n" +
+"<p>Suggest engaging with workplace consultants for a full audit.</p>\n\n" +
 "Return ONLY valid HTML. Do not wrap in markdown or backticks.";
 
                 const aiResp = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=" + cKey, {
@@ -1398,7 +1379,9 @@
                   const aiData = await aiResp.json();
                   let text = aiData.candidates?.[0]?.content?.parts?.[0]?.text || "";
                   if (text) {
-                    text = text.replace(/^```html/i, '').replace(/```$/, '').trim();
+                    const mdStart = new RegExp('^' + String.fromCharCode(96,96,96) + 'html\\s*', 'i');
+                    const mdEnd = new RegExp(String.fromCharCode(96,96,96) + '\\s*$');
+                    text = text.replace(mdStart, '').replace(mdEnd, '').trim();
                     window.standaloneAiReport = '<div class="client-ai-report" style="animation: fadeIn 0.5s;">' + text + '</div>';
                   }
                 }
