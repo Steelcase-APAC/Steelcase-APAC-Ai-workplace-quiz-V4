@@ -245,7 +245,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.40
+            Build v1.41
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -334,7 +334,7 @@
     "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
     "tone": "Executive, authoritative, architectural, and data-driven"
   },
-  "buildVersion": "1.40",
+  "buildVersion": "1.41",
   "content": {
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
@@ -348,7 +348,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-23T11:54:41.960Z",
+    "lastPublishedAt": "2026-08-23T12:02:54.624Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
     "modelFallbacks": [
       "gemini-3.7-flash",
@@ -1272,8 +1272,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[20:02:47] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[20:02:47] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[20:11:26] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[20:11:26] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1453,8 +1453,8 @@
                           sec4 = parsed.section4Html || parsed.section4 || "";
                         } catch (jErr) {
                           if (text.includes("<h3>2.") || text.includes("<h3>4.")) {
-                            const s2Match = text.match(/<h3>2.[^<]*</h3>([sS]*?)(?=<h3>[345].|$)/i);
-                            const s4Match = text.match(/<h3>4.[^<]*</h3>([sS]*?)(?=<h3>[5].|$)/i);
+                            const s2Match = text.match(/<h3>2\.[^<]*<\/h3>([\s\S]*?)(?=<h3>[345]\.|$)/i);
+                            const s4Match = text.match(/<h3>4\.[^<]*<\/h3>([\s\S]*?)(?=<h3>[5]\.|$)/i);
                             sec2 = s2Match ? s2Match[1].trim() : "";
                             sec4 = s4Match ? s4Match[1].trim() : "";
                           } else {
@@ -1671,7 +1671,7 @@
       } else {
         html += '<div style="margin-top: 12px; padding: 20px 24px; background:#F0FDF4; border:1px solid #BBF7D0; border-left: 5px solid #16A34A; border-radius:8px;">';
         html += '<h3 style="margin-top:0; color:#14532D; font-size:15px; font-weight:700;">🚀 Tailored Spatial Optimization & Implementation Plan</h3>';
-        html += '<p style="font-size:13.5px; color:#166534; line-height:1.6; margin-bottom:12px;"><strong>Actionable Spatial Interventions:</strong> High-impact spatial roadmap tailored to ' + compStr + ''s readiness score and team parameters:</p>';
+        html += '<p style="font-size:13.5px; color:#166534; line-height:1.6; margin-bottom:12px;"><strong>Actionable Spatial Interventions:</strong> High-impact spatial roadmap tailored to ' + compStr + '\'s readiness score and team parameters:</p>';
         html += '<ul style="margin:0; padding-left:20px; font-size:13.5px; line-height:1.6; color:#14532D;">';
         html += '<li><strong>Deploy Acoustically Rated Focus Pods:</strong> Isolate intensive voice prompting workflows using certified STC 38+ pods.</li>';
         html += '<li><strong>Adopt Flexible Reconfigurable Zones:</strong> Implement modular partitions and agile furniture to support quick pivots between solo prompting and team syncs.</li>';
@@ -1807,8 +1807,8 @@
              .replace(/&#039;/gi, "'")
              .replace(/&#39;/gi, "'");
       }
-      s = s.replace(/<script[sS]*?<\/script>/gi, '')
-           .replace(/<iframe[sS]*?<\/iframe>/gi, '')
+      s = s.replace(/<script[\s\S]*?<\/script>/gi, '')
+           .replace(/<iframe[\s\S]*?<\/iframe>/gi, '')
            .replace(/\s+on[a-z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
       return s;
     }
