@@ -245,7 +245,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.38
+            Build v1.39
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -334,7 +334,7 @@
     "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
     "tone": "Executive, authoritative, architectural, and data-driven"
   },
-  "buildVersion": "1.38",
+  "buildVersion": "1.39",
   "content": {
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
@@ -348,7 +348,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-23T08:57:15.655Z",
+    "lastPublishedAt": "2026-08-23T11:42:43.941Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
     "modelFallbacks": [
       "gemini-3.7-flash",
@@ -1272,8 +1272,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[19:42:39] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[19:42:39] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[19:54:37] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[19:54:37] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1390,25 +1390,21 @@
                   }
                 }
                 const qText = slimAnswers || "No significant deviations noted.";
-                const prompt = "You are a Senior Workplace Strategy Architect.\n" +
-"Task: Write a comprehensive, personalized 5-section diagnostic report for a company named \"" + compStr + "\".\n" +
-"Survey Score: " + scoreStr + "/100.\n" +
-"Key Survey Highlights:\n" + qText + "\n\n" +
-"CRITICAL INSTRUCTION: You MUST perform a Google Search on '" + compStr + "' to gather their latest news, recent real estate decisions, employee return-to-office mandates, or workplace strategies. Your analysis MUST incorporate specific facts, quotes, or recent events found online about this exact company.\n" +
-"DO NOT ECHO OR QUOTE ANY PROMPT DIRECTIVES OR INSTRUCTIONS IN YOUR FINAL HTML OUTPUT.\n\n" +
-"Generate a highly detailed, professional HTML diagnostic report for this company.\n" +
-"Include these EXACT sections wrapped in HTML tags:\n" +
-"<h3>1. Company Intelligence & Workplace Context</h3>\n" +
-"<p>Write at least 2 to 3 robust paragraphs providing a detailed analysis of " + compStr + " based on your web research. You MUST explicitly mention facts, recent news, and insights you found online about the company. Connect these external facts to their current workplace context.</p>\n" +
-"<h3>2. Technical Score Breakdown</h3>\n" +
-(((QUIZ_CONFIG.reportSections && QUIZ_CONFIG.reportSections[1] && QUIZ_CONFIG.reportSections[1].prompt) ? ("CUSTOM DIRECTIVE FOR THIS SECTION: " + QUIZ_CONFIG.reportSections[1].prompt + "\n") : ("<p>Provide a multi-paragraph analytical breakdown of what a score of " + scoreStr + "/100 means for " + compStr + "'s workplace agility.</p>\n"))) +
-"<h3>3. Critical Friction Points</h3>\n" +
-"<ul><li>Identify 3 specific, detailed friction points based on their exact survey answers. Explain WHY these are friction points in 2-3 sentences each.</li></ul>\n" +
-"<h3>4. High-Performance Optimization Roadmap</h3>\n" +
-(((QUIZ_CONFIG.reportSections && QUIZ_CONFIG.reportSections[3] && QUIZ_CONFIG.reportSections[3].prompt) ? ("CUSTOM DIRECTIVE FOR THIS SECTION: " + QUIZ_CONFIG.reportSections[3].prompt + "\n") : ("<p>Provide 3-4 actionable spatial/acoustic interventions for " + compStr + ".</p>\n"))) + +
-"<h3>5. Executive Next Steps</h3>\n" +
-"<p>Write a concluding paragraph suggesting engagement with workplace consultants for a full audit.</p>\n\n" +
-"Return ONLY valid HTML. Do not wrap in markdown or backticks.";
+                const s2Prompt = (QUIZ_CONFIG.reportSections && QUIZ_CONFIG.reportSections[1] && QUIZ_CONFIG.reportSections[1].prompt)
+                  ? QUIZ_CONFIG.reportSections[1].prompt
+                  : "Analyze the organization survey score (" + scoreStr + "/100) and workplace context. Provide a multi-paragraph technical breakdown.";
+                const s4Prompt = (QUIZ_CONFIG.reportSections && QUIZ_CONFIG.reportSections[3] && QUIZ_CONFIG.reportSections[3].prompt)
+                  ? QUIZ_CONFIG.reportSections[3].prompt
+                  : "Provide 3-4 actionable spatial and acoustic optimization recommendations for " + compStr + ".";
+
+                const prompt = "You are an expert Workplace Strategy AI Architect.\n" +
+"Analyze the workplace assessment for \"" + compStr + "\" (Score: " + scoreStr + "/100).\n" +
+"Survey Highlights:\n" + qText + "\n\n" +
+"Perform a web search on \"" + compStr + "\" to verify company context, hybrid work policy, and office footprint.\n\n" +
+"CRITICAL REQUIREMENT: Return a valid JSON object with EXACTLY two string keys:\n" +
+"1. \"section2Html\": Clean HTML string for Section 2 (Technical Score Breakdown & Diagnostic for " + compStr + "). Must include 2-3 detailed paragraphs analyzing their readiness score (" + scoreStr + "/100) in relation to their real workplace context.\n" +
+"2. \"section4Html\": Clean HTML string for Section 4 (Strategic Roadmap & Spatial Interventions). Must include an unordered list (<ul>) of 3-4 actionable spatial/acoustic recommendations.\n\n" +
+"Return ONLY the JSON object. Do not include markdown fences, backticks, or any other text.";
 
                 const clientModels = (QUIZ_CONFIG.integration && Array.isArray(QUIZ_CONFIG.integration.modelFallbacks) && QUIZ_CONFIG.integration.modelFallbacks.length > 0)
                   ? QUIZ_CONFIG.integration.modelFallbacks.slice(0, 5)
@@ -1445,10 +1441,28 @@
                       const aiData = await resp.json();
                       let text = aiData.candidates?.[0]?.content?.parts?.[0]?.text || "";
                       if (text) {
-                        const mdStart = new RegExp('^' + String.fromCharCode(96,96,96) + 'html\\s*', 'i');
+                        const mdStart = new RegExp('^' + String.fromCharCode(96,96,96) + '(?:json|html)?\\s*', 'i');
                         const mdEnd = new RegExp(String.fromCharCode(96,96,96) + '\\s*$');
                         text = text.replace(mdStart, '').replace(mdEnd, '').trim();
-                        window.standaloneAiReport = '<div class="client-ai-report" style="animation: fadeIn 0.5s;">' + text + '</div>';
+
+                        let sec2 = "";
+                        let sec4 = "";
+                        try {
+                          const parsed = JSON.parse(text);
+                          sec2 = parsed.section2Html || parsed.section2 || "";
+                          sec4 = parsed.section4Html || parsed.section4 || "";
+                        } catch (jErr) {
+                          if (text.includes("<h3>2.") || text.includes("<h3>4.")) {
+                            const s2Match = text.match(/<h3>2.[^<]*</h3>([sS]*?)(?=<h3>[345].|$)/i);
+                            const s4Match = text.match(/<h3>4.[^<]*</h3>([sS]*?)(?=<h3>[5].|$)/i);
+                            sec2 = s2Match ? s2Match[1].trim() : "";
+                            sec4 = s4Match ? s4Match[1].trim() : "";
+                          } else {
+                            sec2 = "<p>" + text + "</p>";
+                          }
+                        }
+
+                        window.standaloneAiReport = generateStaticAiReport(calculateScore(), lead.company, lead.name, sec2, sec4);
                         break;
                       }
                     }
@@ -1558,30 +1572,17 @@
       render();
     }
 
-    function generateStaticAiReport(score, company, leadName) {
+    function generateStaticAiReport(score, company, leadName, sec2AiHtml, sec4AiHtml) {
       const compStr = escapeHtml(company || 'your organization');
       const secs = (QUIZ_CONFIG.reportSections && Array.isArray(QUIZ_CONFIG.reportSections) && QUIZ_CONFIG.reportSections.length === 5)
         ? QUIZ_CONFIG.reportSections
         : null;
 
-      if (!secs) {
-        return '<h3>1. Workplace Research Context</h3>' +
-          '<p>Workplace analysis for <strong>' + compStr + '</strong> indicates an accelerating transition toward hybrid collaboration and generative AI workflows. Organizations operating in this space require high spatial adaptability and strict acoustic containment to maximize cognitive output and retain top technical talent.</p>' +
-          '<h3>2. Technical Score Breakdown (' + score + '/100 Index Analysis)</h3>' +
-          '<p>Your overall score of <strong>' + score + '/100</strong> highlights key spatial and acoustic vulnerabilities. Modern generative AI workflows demand rapid context-switching between solitary prompting (high acoustic isolation) and team co-creation (agile spatial reconfiguration).</p>' +
-          '<h3>3. High-Performance Spatial Optimization Roadmap</h3>' +
-          '<ul>' +
-          '<li><strong>Acoustically Rated Micro-Pods:</strong> Deploy isolated booths engineered with STC 38+ ratings for voice-based AI prompting and intense individual focus.</li>' +
-          '<li><strong>Dynamic Visual Boundaries:</strong> Implement mobile acoustic screens to define project micro-zones and shield confidential screen prompts on demand.</li>' +
-          '<li><strong>Micro-Power Drop Topologies:</strong> Deploy flexible ceiling and under-floor power distribution drops to eliminate tethering constraints in agile AI war rooms.</li>' +
-          '</ul>';
-      }
-
-      const s1 = secs[0] || {};
-      const s2 = secs[1] || {};
-      const s3 = secs[2] || {};
-      const s4 = secs[3] || {};
-      const s5 = secs[4] || {};
+      const s1 = (secs && secs[0]) || {};
+      const s2 = (secs && secs[1]) || {};
+      const s3 = (secs && secs[2]) || {};
+      const s4 = (secs && secs[3]) || {};
+      const s5 = (secs && secs[4]) || {};
 
       let html = '';
 
@@ -1604,7 +1605,8 @@
         return bHtml;
       }
 
-      // Section 1: Title, description, left image, right text box
+      // Section 1: HUMAN ONLY - Title, description, image, text box, extra blocks
+      const s1TextBox = (s1.textBox || "").trim() || ('Workplace analysis for <strong>' + compStr + '</strong> indicates an accelerating transition toward hybrid collaboration and generative AI workflows. Organizations operating in this space require high spatial adaptability and strict acoustic containment to maximize cognitive output and retain top technical talent.');
       html += '<div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid #E5E7EB;">';
       html += '<span class="section-eyebrow-pill"><span class="bullet-dot"></span>' + escapeHtml(s1.eyebrow || '01. OVERVIEW') + '</span>';
       html += '<h3 style="margin-top:0; font-size:18px; color:#111827;">1. ' + escapeHtml(s1.sectionHeading || 'Company Intelligence & Workplace Research Context') + '</h3>';
@@ -1615,29 +1617,33 @@
       if (s1.imageUrl) {
         html += '<div style="float:left; width:220px; max-width:40%; margin-right:16px; margin-bottom:10px; border-radius:6px; overflow:hidden; border:1px solid #E5E7EB;"><img src="' + s1.imageUrl + '" alt="Section 1 Visual" style="width:100%; height:auto; display:block; object-fit:cover;" /></div>';
       }
-      if (s1.textBox) {
-        html += '<div style="font-size:13.5px; line-height:1.65; color:#374151;">' + sanitizeFormattedHtml(s1.textBox) + '</div>';
-      }
+      html += '<div style="font-size:13.5px; line-height:1.65; color:#374151;">' + sanitizeFormattedHtml(s1TextBox) + '</div>';
       html += '<div style="clear:both;"></div></div>';
       html += renderExtraBlocks(s1);
       html += '</div>';
 
-      // Section 2: What your results mean (AI prompt & Analysis)
+      // Section 2: AI ONLY - Technical Score Breakdown & Diagnostic
       html += '<div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid #E5E7EB;">';
       html += '<span class="section-eyebrow-pill"><span class="bullet-dot"></span>' + escapeHtml(s2.eyebrow || '02. AI DIAGNOSTIC') + '</span>';
       html += '<h3 style="margin-top:0; font-size:18px; color:#111827;">2. ' + escapeHtml(s2.sectionHeading || ('Technical Score Breakdown (' + score + '/100 Index Analysis)')) + '</h3>';
       if (s2.description) {
         html += '<p class="section-desc">' + escapeHtml(s2.description) + '</p>';
       }
-      html += '<div class="top-insights-box" style="margin-top: 12px; margin-bottom: 16px;">';
-      html += '<h3 style="margin-top:0; color:#1E3A8A; font-size:16px; font-weight:700;">🎯 Workplace Spatial & Acoustic Diagnosis for ' + compStr + '</h3>';
-      html += '<ol>';
-      html += '<li><strong>Baseline Readiness for ' + compStr + ':</strong> Your overall readiness score of <strong>' + score + '/100</strong> indicates key vulnerabilities where open-space acoustic distraction limits AI prompting.</li>';
-      html += '<li><strong>Spatial & Focus Analysis:</strong> Uncontained voice prompting introduces severe cognitive task-switching latency. Integrating high-STC acoustic focus zones recovers deep productivity for ' + compStr + '.</li>';
-      html += '<li><strong>Operational Impact:</strong> Modern hybrid workflows require dedicated acoustic enclosures to protect focus and sustain high-velocity software delivery.</li>';
-      html += '</ol></div></div>';
+      if (sec2AiHtml) {
+        html += '<div class="top-insights-box" style="margin-top: 12px; margin-bottom: 16px;">' + sec2AiHtml + '</div>';
+      } else {
+        html += '<div class="top-insights-box" style="margin-top: 12px; margin-bottom: 16px;">';
+        html += '<h3 style="margin-top:0; color:#1E3A8A; font-size:16px; font-weight:700;">🎯 Workplace Spatial & Acoustic Diagnosis for ' + compStr + '</h3>';
+        html += '<ol>';
+        html += '<li><strong>Baseline Readiness for ' + compStr + ':</strong> Your overall readiness score of <strong>' + score + '/100</strong> indicates key vulnerabilities where open-space acoustic distraction limits AI prompting.</li>';
+        html += '<li><strong>Spatial & Focus Analysis:</strong> Uncontained voice prompting introduces severe cognitive task-switching latency. Integrating high-STC acoustic focus zones recovers deep productivity for ' + compStr + '.</li>';
+        html += '<li><strong>Operational Impact:</strong> Modern hybrid workflows require dedicated acoustic enclosures to protect focus and sustain high-velocity software delivery.</li>';
+        html += '</ol></div>';
+      }
+      html += '</div>';
 
-      // Section 3: Title, description, left image, right text box
+      // Section 3: HUMAN ONLY - Infrastructure & Friction Points
+      const s3TextBox = (s3.textBox || "").trim() || 'Spatial flexibility and STC 38+ acoustic enclosures mitigate context-switching latency. Implementing agile micro-zones prevents open-plan acoustic spill and preserves uninterrupted focus.';
       html += '<div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid #E5E7EB;">';
       html += '<span class="section-eyebrow-pill"><span class="bullet-dot"></span>' + escapeHtml(s3.eyebrow || '03. INFRASTRUCTURE') + '</span>';
       html += '<h3 style="margin-top:0; font-size:18px; color:#111827;">3. ' + escapeHtml(s3.sectionHeading || 'Critical Architectural & Operational Friction Points (Bottom-Line Impact)') + '</h3>';
@@ -1648,30 +1654,34 @@
       if (s3.imageUrl) {
         html += '<div style="float:left; width:220px; max-width:40%; margin-right:16px; margin-bottom:10px; border-radius:6px; overflow:hidden; border:1px solid #E5E7EB;"><img src="' + s3.imageUrl + '" alt="Section 3 Visual" style="width:100%; height:auto; display:block; object-fit:cover;" /></div>';
       }
-      if (s3.textBox) {
-        html += '<div style="font-size:13.5px; line-height:1.65; color:#374151;">' + sanitizeFormattedHtml(s3.textBox) + '</div>';
-      }
+      html += '<div style="font-size:13.5px; line-height:1.65; color:#374151;">' + sanitizeFormattedHtml(s3TextBox) + '</div>';
       html += '<div style="clear:both;"></div></div>';
       html += renderExtraBlocks(s3);
       html += '</div>';
 
-      // Section 4: What's our recommendation (AI prompt & Recommendations)
+      // Section 4: AI ONLY - Strategic Roadmap & Recommendations
       html += '<div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid #E5E7EB;">';
       html += '<span class="section-eyebrow-pill"><span class="bullet-dot"></span>' + escapeHtml(s4.eyebrow || '04. STRATEGIC ROADMAP') + '</span>';
       html += '<h3 style="margin-top:0; font-size:18px; color:#111827;">4. ' + escapeHtml(s4.sectionHeading || 'High-Performance Spatial Optimization Roadmap') + '</h3>';
       if (s4.description) {
         html += '<p class="section-desc">' + escapeHtml(s4.description) + '</p>';
       }
-      html += '<div style="margin-top: 12px; padding: 20px 24px; background:#F0FDF4; border:1px solid #BBF7D0; border-left: 5px solid #16A34A; border-radius:8px;">';
-      html += '<h3 style="margin-top:0; color:#14532D; font-size:15px; font-weight:700;">🚀 Tailored Spatial Optimization & Implementation Plan</h3>';
-      html += '<p style="font-size:13.5px; color:#166534; line-height:1.6; margin-bottom:12px;"><strong>Actionable Spatial Interventions:</strong> High-impact spatial roadmap tailored to ' + compStr + '\'s readiness score and team parameters:</p>';
-      html += '<ul style="margin:0; padding-left:20px; font-size:13.5px; line-height:1.6; color:#14532D;">';
-      html += '<li><strong>Deploy Acoustically Rated Focus Pods:</strong> Isolate intensive voice prompting workflows using certified STC 38+ pods.</li>';
-      html += '<li><strong>Adopt Flexible Reconfigurable Zones:</strong> Implement modular partitions and agile furniture to support quick pivots between solo prompting and team syncs.</li>';
-      html += '<li><strong>Power & Infrastructure Optimization:</strong> Install drop-down power poles and underfloor channels to eliminate cabling clutter in collaborative zones.</li>';
-      html += '</ul></div></div>';
+      if (sec4AiHtml) {
+        html += '<div style="margin-top: 12px; padding: 20px 24px; background:#F0FDF4; border:1px solid #BBF7D0; border-left: 5px solid #16A34A; border-radius:8px;">' + sec4AiHtml + '</div>';
+      } else {
+        html += '<div style="margin-top: 12px; padding: 20px 24px; background:#F0FDF4; border:1px solid #BBF7D0; border-left: 5px solid #16A34A; border-radius:8px;">';
+        html += '<h3 style="margin-top:0; color:#14532D; font-size:15px; font-weight:700;">🚀 Tailored Spatial Optimization & Implementation Plan</h3>';
+        html += '<p style="font-size:13.5px; color:#166534; line-height:1.6; margin-bottom:12px;"><strong>Actionable Spatial Interventions:</strong> High-impact spatial roadmap tailored to ' + compStr + ''s readiness score and team parameters:</p>';
+        html += '<ul style="margin:0; padding-left:20px; font-size:13.5px; line-height:1.6; color:#14532D;">';
+        html += '<li><strong>Deploy Acoustically Rated Focus Pods:</strong> Isolate intensive voice prompting workflows using certified STC 38+ pods.</li>';
+        html += '<li><strong>Adopt Flexible Reconfigurable Zones:</strong> Implement modular partitions and agile furniture to support quick pivots between solo prompting and team syncs.</li>';
+        html += '<li><strong>Power & Infrastructure Optimization:</strong> Install drop-down power poles and underfloor channels to eliminate cabling clutter in collaborative zones.</li>';
+        html += '</ul></div>';
+      }
+      html += '</div>';
 
-      // Section 5: Title, description, left image, right text box
+      // Section 5: HUMAN ONLY - Next Steps & Implementation
+      const s5TextBox = (s5.textBox || "").trim() || 'Schedule a dedicated consultation with workplace strategy specialists to conduct a comprehensive on-site acoustic and spatial audit, tailored to your technical team topologies.';
       html += '<div style="margin-bottom: 24px;">';
       html += '<span class="section-eyebrow-pill"><span class="bullet-dot"></span>' + escapeHtml(s5.eyebrow || '05. IMPLEMENTATION') + '</span>';
       html += '<h3 style="margin-top:0; font-size:18px; color:#111827;">5. ' + escapeHtml(s5.sectionHeading || 'Executive Next Steps: Beyond DIY to Certified Spatial Mastery') + '</h3>';
@@ -1682,14 +1692,12 @@
       if (s5.imageUrl) {
         html += '<div style="float:left; width:220px; max-width:40%; margin-right:16px; margin-bottom:10px; border-radius:6px; overflow:hidden; border:1px solid #E5E7EB;"><img src="' + s5.imageUrl + '" alt="Section 5 Visual" style="width:100%; height:auto; display:block; object-fit:cover;" /></div>';
       }
-      if (s5.textBox) {
-        html += '<div style="font-size:13.5px; line-height:1.65; color:#374151;">' + sanitizeFormattedHtml(s5.textBox) + '</div>';
-      }
+      html += '<div style="font-size:13.5px; line-height:1.65; color:#374151;">' + sanitizeFormattedHtml(s5TextBox) + '</div>';
       html += '<div style="clear:both;"></div></div>';
       html += renderExtraBlocks(s5);
       html += '</div>';
 
-      // References & Footnotes
+      // References & Footnotes - HUMAN ONLY
       const customFootnotes = QUIZ_CONFIG.dangerZoneConfig && QUIZ_CONFIG.dangerZoneConfig.footnotesReferenceHtml
         ? QUIZ_CONFIG.dangerZoneConfig.footnotesReferenceHtml
         : null;
