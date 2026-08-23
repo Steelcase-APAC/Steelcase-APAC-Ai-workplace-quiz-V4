@@ -245,7 +245,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.41
+            Build v1.42
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -334,7 +334,7 @@
     "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
     "tone": "Executive, authoritative, architectural, and data-driven"
   },
-  "buildVersion": "1.41",
+  "buildVersion": "1.42",
   "content": {
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
@@ -348,7 +348,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-23T12:02:54.624Z",
+    "lastPublishedAt": "2026-08-23T12:11:33.088Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
     "modelFallbacks": [
       "gemini-3.7-flash",
@@ -1272,8 +1272,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[20:11:26] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[20:11:26] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[20:26:57] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[20:26:57] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1695,6 +1695,25 @@
       html += '<div style="font-size:13.5px; line-height:1.65; color:#374151;">' + sanitizeFormattedHtml(s5TextBox) + '</div>';
       html += '<div style="clear:both;"></div></div>';
       html += renderExtraBlocks(s5);
+
+      // FULL-WIDTH CTA CARD AT BOTTOM OF SECTION 5 (ABOVE SOURCES)
+      html += '<div style="margin-top: 28px; background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 24px 28px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); width: 100%; box-sizing: border-box;">';
+      html += '<div style="display: inline-flex; align-items: center; gap: 6px; color: #059669; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: #ECFDF5; border: 1px solid #A7F3D0; padding: 4px 12px; border-radius: 9999px; margin-bottom: 12px;">';
+      html += '<span>✓</span> CONGRATULATIONS! YOU QUALIFY FOR AN EXECUTIVE STRATEGY CONSULTATION';
+      html += '</div>';
+      html += '<h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 700; color: #0F172A;">Professional Assessment</h3>';
+      html += '<p style="margin: 0 auto 18px auto; font-size: 14px; color: #475569; max-width: 580px; line-height: 1.5;">Schedule a deep-dive session with a workplace strategy specialist to analyze your spatial parameters and acoustic requirements.</p>';
+      if (isApplied) {
+        html += '<div style="display: inline-flex; align-items: center; gap: 8px; color: #059669; background: #ECFDF5; border: 1px solid #6EE7B7; font-size: 14px; font-weight: 600; padding: 10px 24px; border-radius: 8px;">';
+        html += '<span>✓</span> Qualified for Consultation';
+        html += '</div>';
+      } else {
+        html += '<button type="button" onclick="requestAssessment()" style="background: #2563EB; color: #FFFFFF; font-weight: 600; font-size: 14px; padding: 12px 28px; border-radius: 8px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s ease; box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);">';
+        html += '<span>✉️</span> Apply Now';
+        html += '</button>';
+      }
+      html += '</div>';
+
       html += '</div>';
 
       // References & Footnotes - HUMAN ONLY
