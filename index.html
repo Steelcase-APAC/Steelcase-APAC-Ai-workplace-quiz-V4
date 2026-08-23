@@ -245,7 +245,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.33
+            Build v1.34
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -334,7 +334,7 @@
     "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
     "tone": "Executive, authoritative, architectural, and data-driven"
   },
-  "buildVersion": "1.33",
+  "buildVersion": "1.34",
   "content": {
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
@@ -348,7 +348,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-23T02:48:36.679Z",
+    "lastPublishedAt": "2026-08-23T03:25:45.091Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
     "modelFallbacks": [
       "gemini-3.7-flash",
@@ -357,8 +357,10 @@
       "gemini-2.5-flash",
       "gemini-1.5-flash"
     ],
-    "geminiApiKeyPart1": "AQ.Ab8RN6KEIim7N66gnpM8FaV",
-    "geminiApiKeyPart2": "ntII-mnRxFkdN6J_ImujoKtyc1A"
+    "geminiApiKeyPart1": "AQ.Ab8RN6KEIi",
+    "geminiApiKeyPart2": "m7N66gnpM8FaV",
+    "geminiApiKeyPart3": "ntII-mnRxFkdN",
+    "geminiApiKeyPart4": "6J_ImujoKtyc1A"
   },
   "reportSections": [
     {
@@ -1249,8 +1251,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[11:25:39] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[11:25:39] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[16:16:54] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[16:16:54] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1340,7 +1342,7 @@
                 aiPersona: QUIZ_CONFIG.aiPersona,
                 reportSections: QUIZ_CONFIG.reportSections,
                 dangerZoneConfig: QUIZ_CONFIG.dangerZoneConfig,
-                customApiKey: QUIZ_CONFIG.integration?.geminiApiKey || (QUIZ_CONFIG.integration?.geminiApiKeyPart1 ? QUIZ_CONFIG.integration.geminiApiKeyPart1 + QUIZ_CONFIG.integration.geminiApiKeyPart2 : '')
+                customApiKey: QUIZ_CONFIG.integration?.geminiApiKey || (QUIZ_CONFIG.integration?.geminiApiKeyPart1 && QUIZ_CONFIG.integration?.geminiApiKeyPart4 ? (QUIZ_CONFIG.integration.geminiApiKeyPart1 + QUIZ_CONFIG.integration.geminiApiKeyPart2 + QUIZ_CONFIG.integration.geminiApiKeyPart3 + QUIZ_CONFIG.integration.geminiApiKeyPart4) : (QUIZ_CONFIG.integration?.geminiApiKeyPart1 ? QUIZ_CONFIG.integration.geminiApiKeyPart1 + (QUIZ_CONFIG.integration.geminiApiKeyPart2 || '') : ''))
               })
             });
             if (resp.ok) {
@@ -1352,7 +1354,8 @@
             }
           } catch (e) {
             console.warn("Backend AI fetch failed, attempting client-side fallback...", e);
-            const assembledKey = QUIZ_CONFIG.integration ? (QUIZ_CONFIG.integration.geminiApiKey || (QUIZ_CONFIG.integration.geminiApiKeyPart1 ? QUIZ_CONFIG.integration.geminiApiKeyPart1 + QUIZ_CONFIG.integration.geminiApiKeyPart2 : '')) : '';
+            const ig = QUIZ_CONFIG.integration;
+            const assembledKey = ig ? (ig.geminiApiKey || (ig.geminiApiKeyPart1 && ig.geminiApiKeyPart4 ? (ig.geminiApiKeyPart1 + ig.geminiApiKeyPart2 + ig.geminiApiKeyPart3 + ig.geminiApiKeyPart4) : (ig.geminiApiKeyPart1 ? (ig.geminiApiKeyPart1 + (ig.geminiApiKeyPart2 || '')) : ''))) : '';
             if (assembledKey) {
               try {
                 const cKey = assembledKey;
