@@ -245,7 +245,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.35
+            Build v1.36
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -334,7 +334,7 @@
     "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
     "tone": "Executive, authoritative, architectural, and data-driven"
   },
-  "buildVersion": "1.35",
+  "buildVersion": "1.36",
   "content": {
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
@@ -348,7 +348,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-23T08:17:09.994Z",
+    "lastPublishedAt": "2026-08-23T08:41:21.559Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
     "modelFallbacks": [
       "gemini-3.7-flash",
@@ -776,14 +776,21 @@
     let telSent = false;
 
     function init() {
-      document.getElementById('hero-eyebrow').innerText = '📊 ' + (QUIZ_CONFIG.content?.eyebrow || 'Diagnostic');
-      document.getElementById('hero-title').innerText = QUIZ_CONFIG.content?.title || 'Interactive Diagnostic';
-      document.getElementById('hero-desc').innerText = QUIZ_CONFIG.content?.description || '';
-      render();
+      try {
+        const eyebrowEl = document.getElementById('hero-eyebrow');
+        if (eyebrowEl) eyebrowEl.innerText = '📊 ' + (QUIZ_CONFIG.content?.eyebrow || 'Diagnostic');
+        const titleEl = document.getElementById('hero-title');
+        if (titleEl) titleEl.innerText = QUIZ_CONFIG.content?.title || 'Interactive Diagnostic';
+        const descEl = document.getElementById('hero-desc');
+        if (descEl) descEl.innerText = QUIZ_CONFIG.content?.description || '';
+        render();
+      } catch (err) {
+        console.error('Quiz init error:', err);
+      }
     }
 
     function calculateProgress() {
-      const totalQuestions = QUIZ_CONFIG.questions.length;
+      const totalQuestions = (QUIZ_CONFIG.questions && QUIZ_CONFIG.questions.length) ? QUIZ_CONFIG.questions.length : 1;
       const isResult = currentStep > totalQuestions;
       if (isResult) return 100;
       return Math.round((currentStep / (totalQuestions + 1)) * 100);
@@ -791,24 +798,30 @@
 
     function updateProgressUI() {
       const p = calculateProgress();
-      const isResult = currentStep > QUIZ_CONFIG.questions.length;
-      document.getElementById('progress-fill').style.width = p + '%';
-      document.getElementById('progress-text').innerText = p + '%';
-      document.getElementById('progress-label').innerText = isResult ? 'Report Generated' : 'Data Collection';
+      const totalQuestions = (QUIZ_CONFIG.questions && QUIZ_CONFIG.questions.length) ? QUIZ_CONFIG.questions.length : 1;
+      const isResult = currentStep > totalQuestions;
+      const fillEl = document.getElementById('progress-fill');
+      if (fillEl) fillEl.style.width = p + '%';
+      const textEl = document.getElementById('progress-text');
+      if (textEl) textEl.innerText = p + '%';
+      const labelEl = document.getElementById('progress-label');
+      if (labelEl) labelEl.innerText = isResult ? 'Report Generated' : 'Data Collection';
     }
 
     function calculateScore() {
       let raw = 0;
-      QUIZ_CONFIG.questions.forEach(q => {
+      const qList = QUIZ_CONFIG.questions || [];
+      qList.forEach(q => {
         if (answers[q.id] !== undefined) raw += answers[q.id];
       });
-      const maxPossible = QUIZ_CONFIG.questions.length * 10;
+      const maxPossible = qList.length * 10;
       return maxPossible > 0 ? Math.round((raw / maxPossible) * 100) : 0;
     }
 
     function getAnswerLabels() {
       let labeled = {};
-      QUIZ_CONFIG.questions.forEach(q => {
+      const qList = QUIZ_CONFIG.questions || [];
+      qList.forEach(q => {
         const val = answers[q.id];
         const opt = q.options ? q.options.find(o => o.value === val) : null;
         labeled[q.id] = opt ? opt.label : (val !== undefined ? val : 'N/A');
@@ -830,27 +843,35 @@
     function render() {
       updateProgressUI();
       const mainCard = document.getElementById('quiz-main-card');
-      const totalQuestions = QUIZ_CONFIG.questions.length;
+      if (!mainCard) return;
+      const totalQuestions = (QUIZ_CONFIG.questions && QUIZ_CONFIG.questions.length) ? QUIZ_CONFIG.questions.length : 0;
+
+      if (totalQuestions === 0) {
+        mainCard.innerHTML = '<div style="padding:40px; text-align:center; color:#5F6368;"><p>No questions configured for this quiz.</p></div>';
+        return;
+      }
 
       if (currentStep < totalQuestions) {
         // Question Step
         const q = QUIZ_CONFIG.questions[currentStep];
         let optionsHtml = '';
-        q.options.forEach(opt => {
-          const selected = answers[q.id] === opt.value;
-          optionsHtml += `
-            <button class="option-btn ${selected ? 'selected' : ''}" onclick="selectAnswer('${q.id}', ${opt.value})">
-              <span>${escapeHtml(opt.label)}</span>
-              ${selected ? '<span style="color:var(--primary-color)">✓</span>' : ''}
-            </button>
-          `;
-        });
+        if (q && q.options) {
+          q.options.forEach(opt => {
+            const selected = answers[q.id] === opt.value;
+            optionsHtml += `
+              <button class="option-btn ${selected ? 'selected' : ''}" onclick="selectAnswer('${q.id}', ${opt.value})">
+                <span>${escapeHtml(opt.label)}</span>
+                ${selected ? '<span style="color:var(--primary-color)">✓</span>' : ''}
+              </button>
+            `;
+          });
+        }
 
         mainCard.innerHTML = `
           <div class="question-head">
             <div style="font-size:12px; font-weight:600; color:#5F6368; text-transform:uppercase; margin-bottom:12px;">Metric ${currentStep + 1} of ${totalQuestions}</div>
-            <h2>${escapeHtml(q.question)}</h2>
-            <div class="section-label">${escapeHtml(q.section || 'General')}</div>
+            <h2>${escapeHtml(q ? q.question : 'Question')}</h2>
+            <div class="section-label">${escapeHtml((q && q.section) || 'General')}</div>
           </div>
           <div class="options-grid">
             ${optionsHtml}
@@ -1251,8 +1272,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[16:41:04] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[16:41:04] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[16:56:10] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[16:56:10] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1784,7 +1805,11 @@
       return s;
     }
 
-    window.addEventListener('DOMContentLoaded', init);
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   </script>
 </body>
 </html>
