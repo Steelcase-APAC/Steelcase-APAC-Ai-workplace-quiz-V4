@@ -320,9 +320,9 @@
     "disclaimer": "Confidential diagnostic prepared by Steelcase Applied Research + Consulting (ARC)."
   },
   "aiPersona": {
-    "role": "Senior Principal Workplace Strategy Architect & AI Workplace Fellow at Steelcase Applied Research + Consulting (ARC)",
-    "focusAreas": "Physical space readiness for generative AI workflows, STC 38+ acoustic enclosures & speech privacy, cognitive focus sanctuaries, agile reconfigurable team neighborhoods, distributed mobile power density, and hybrid video meeting equity (ISO 22955 & Steelcase ARC benchmarks)",
-    "tone": "Authoritative, architectural, diagnostic, executive-level, and rigorously grounded in workplace ergonomics and environmental psychology"
+    "role": "Senior Workplace Strategy Architect & AI Workplace Specialist at Steelcase Applied Research + Consulting (ARC)",
+    "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
+    "tone": "Executive, authoritative, architectural, and data-driven"
   },
   "buildVersion": "1.04",
   "content": {
@@ -1243,8 +1243,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[20:32:46] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[20:32:46] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[20:54:58] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[20:54:58] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1322,7 +1322,7 @@
         // Fetch AI analysis if endpoint available
         const fetchAiPromise = (async () => {
           try {
-            const resp = await fetch("https://ais-dev-ztqymkhvmembsdquy4m2mn-167393549139.asia-southeast1.run.app/api/analyze-company", {
+            const resp = await fetch("https://quizduildersg-381493658865.asia-southeast1.run.app/api/analyze-company", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -1426,15 +1426,24 @@
                         let sec4 = "";
                         try {
                           const parsed = JSON.parse(text);
-                          sec2 = parsed.section2Html || parsed.section2 || "";
-                          sec4 = parsed.section4Html || parsed.section4 || "";
+                          sec2 = parsed.section2Html || parsed.section2 || parsed.Section2 || parsed.section_2 || "";
+                          sec4 = parsed.section4Html || parsed.section4 || parsed.Section4 || parsed.section_4 || "";
                         } catch (jErr) {
-                          if (text.includes("<h3>2.") || text.includes("<h3>4.")) {
+                          const jsonMatch = text.match(/{[sS]*"section[24]Html"[sS]*}/i) || text.match(/{[sS]*}/);
+                          if (jsonMatch) {
+                            try {
+                              const parsed = JSON.parse(jsonMatch[0]);
+                              sec2 = parsed.section2Html || parsed.section2 || parsed.Section2 || parsed.section_2 || "";
+                              sec4 = parsed.section4Html || parsed.section4 || parsed.Section4 || parsed.section_4 || "";
+                            } catch (subErr) {}
+                          }
+
+                          if (!sec2 && (text.includes("<h3>2.") || text.includes("<h3>4."))) {
                             const s2Match = text.match(/<h3>2\.[^<]*<\/h3>([\s\S]*?)(?=<h3>[345]\.|$)/i);
                             const s4Match = text.match(/<h3>4\.[^<]*<\/h3>([\s\S]*?)(?=<h3>[5]\.|$)/i);
                             sec2 = s2Match ? s2Match[1].trim() : "";
                             sec4 = s4Match ? s4Match[1].trim() : "";
-                          } else {
+                          } else if (!sec2) {
                             sec2 = "<p>" + text + "</p>";
                           }
                         }
