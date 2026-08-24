@@ -245,7 +245,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.43
+            Build v1.44
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -334,7 +334,7 @@
     "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
     "tone": "Executive, authoritative, architectural, and data-driven"
   },
-  "buildVersion": "1.43",
+  "buildVersion": "1.44",
   "content": {
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
@@ -348,14 +348,14 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-23T12:27:01.820Z",
+    "lastPublishedAt": "2026-08-23T23:32:35.821Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
     "modelFallbacks": [
+      "gemini-pro-latest",
       "gemini-3.7-flash",
+      "gemini-3.6-flash",
       "gemini-3.5-flash",
-      "gemini-3.5-flash-lite",
-      "gemini-2.5-flash",
-      "gemini-1.5-flash"
+      "gemini-3.1-pro-preview"
     ],
     "geminiApiKeyPart1": "AQ.Ab8RN6KEIi",
     "geminiApiKeyPart2": "m7N66gnpM8FaV",
@@ -1272,8 +1272,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[07:32:24] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[07:32:24] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[08:46:36] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[08:46:36] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1406,15 +1406,21 @@
 "2. \"section4Html\": Clean HTML string for Section 4 (Strategic Roadmap & Spatial Interventions). Must include an unordered list (<ul>) of 3-4 actionable spatial/acoustic recommendations.\n\n" +
 "Return ONLY the JSON object. Do not include markdown fences, backticks, or any other text.";
 
-                const clientModels = (QUIZ_CONFIG.integration && Array.isArray(QUIZ_CONFIG.integration.modelFallbacks) && QUIZ_CONFIG.integration.modelFallbacks.length > 0)
-                  ? QUIZ_CONFIG.integration.modelFallbacks.slice(0, 5)
+                const rawClientModels = (QUIZ_CONFIG.integration && Array.isArray(QUIZ_CONFIG.integration.modelFallbacks) && QUIZ_CONFIG.integration.modelFallbacks.length > 0)
+                  ? QUIZ_CONFIG.integration.modelFallbacks.slice(0, 6)
                   : [
-                      "gemini-3.5-flash-lite",
-                      "gemini-3.1-flash-lite",
-                      "gemini-flash-lite-latest",
+                      "gemini-3.7-flash",
                       "gemini-3.6-flash",
-                      "gemini-3.7-flash"
+                      "gemini-3.5-flash",
+                      "gemini-3.5-flash-lite",
+                      "gemini-pro-latest"
                     ];
+
+                const rotateIdx = Math.floor(Date.now() / 1000) % rawClientModels.length;
+                const clientModels = [
+                  ...rawClientModels.slice(rotateIdx),
+                  ...rawClientModels.slice(0, rotateIdx)
+                ];
 
                 for (const mName of clientModels) {
                   try {
