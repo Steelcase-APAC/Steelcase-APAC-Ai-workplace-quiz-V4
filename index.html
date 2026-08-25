@@ -1247,8 +1247,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[07:41:29] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[07:41:29] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[07:47:47] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[07:47:47] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1560,6 +1560,14 @@
       });
     }
 
+    function syncTel(val) {
+      window.quizTel = val;
+      const topInput = document.getElementById('tel-input');
+      if (topInput && topInput.value !== val) topInput.value = val;
+      const bottomInput = document.getElementById('bottom-tel-input');
+      if (bottomInput && bottomInput.value !== val) bottomInput.value = val;
+    }
+
     async function submitTel(overrideVal) {
       const topInput = document.getElementById('tel-input');
       const bottomInput = document.getElementById('bottom-tel-input');
@@ -1753,8 +1761,8 @@
           html += '<div id="bottom-tel-box" style="display:' + (!telSent ? 'block' : 'none') + '; background:white; padding:16px 20px; border:1px solid #E5E7EB; border-radius:8px; margin:14px auto 0 auto; max-width:440px; text-align:left; box-shadow:0 2px 6px rgba(0,0,0,0.03);">';
           html += '<label style="font-size:12px; font-weight:600; display:block; margin-bottom:8px; color:#1F2937;">' + escapeHtml(secondaryText) + '</label>';
           html += '<div style="display:flex; gap:8px;">';
-          html += '<input type="tel" id="bottom-tel-input" placeholder="+1..." value="' + escapeHtml(window.quizTel || '') + '" oninput="window.quizTel = this.value; const u = document.getElementById('tel-input'); if(u) u.value = this.value;" style="flex:1; padding:8px 12px; border:1px solid #D1D5DB; border-radius:4px; font-size:14px;" />';
-          html += '<button type="button" onclick="submitTel(document.getElementById('bottom-tel-input')?.value)" class="btn btn-secondary" style="padding:8px 16px; font-size:13px; font-weight:600; cursor:pointer;">Send</button>';
+          html += '<input type="tel" id="bottom-tel-input" placeholder="+1..." value="' + escapeHtml(window.quizTel || '') + '" oninput="syncTel(this.value)" style="flex:1; padding:8px 12px; border:1px solid #D1D5DB; border-radius:4px; font-size:14px;" />';
+          html += '<button type="button" onclick="submitTel()" class="btn btn-secondary" style="padding:8px 16px; font-size:13px; font-weight:600; cursor:pointer;">Send</button>';
           html += '</div>';
           html += '</div>';
           html += '<div id="bottom-tel-saved-msg" style="display:' + (telSent ? 'block' : 'none') + '; font-size:13px; color:#059669; margin-top:10px; font-weight:600;">✓ Phone saved</div>';
