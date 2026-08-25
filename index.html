@@ -1247,8 +1247,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[06:46:46] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[06:46:46] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[06:55:02] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[06:55:02] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1314,15 +1314,15 @@
           }
         }
 
-        // Stagger step transitions: 0 -> 1 after 1.2s -> 2 after 2.7s (crawls at step 3 while fetching)
+        // Stagger step transitions: 0 -> 1 after 900ms -> 2 after 2000ms (crawls at step 3 while fetching)
         const t1 = setTimeout(() => {
           updateStepUI(1);
           addDiagnosticLog('[Client Engine] Stage 2/4: Processing survey index metrics & benchmarks...');
-        }, 1200);
+        }, 900);
         const t2 = setTimeout(() => {
           updateStepUI(2);
           addDiagnosticLog('[Client Engine] Stage 3/4: Assessing acoustic transmission (STC) & IT adaptability...');
-        }, 2700);
+        }, 2000);
 
         // Run webhook in parallel
         sendWebhook({
@@ -1340,6 +1340,8 @@
           score: calculateScore(),
           timestamp: new Date().toISOString()
         }).catch(err => console.error("Webhook error:", err));
+
+        const minStandaloneTimePromise = new Promise(res => setTimeout(res, 3000));
 
         // Fetch AI analysis if endpoint available
         const fetchAiPromise = (async () => {
@@ -1360,7 +1362,7 @@
                 aiPersona: QUIZ_CONFIG.aiPersona,
                 reportSections: QUIZ_CONFIG.reportSections,
                 dangerZoneConfig: QUIZ_CONFIG.dangerZoneConfig,
-                modelFallbacks: QUIZ_CONFIG.integration?.modelFallbacks || ['gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-3.5-flash-lite', 'gemini-pro-latest'],
+                modelFallbacks: QUIZ_CONFIG.integration?.modelFallbacks || ['gemini-3.1-flash-lite', 'gemini-3.7-flash', 'gemini-flash-latest', 'gemini-3.1-pro-preview'],
                 customApiKey: QUIZ_CONFIG.integration?.geminiApiKey || (QUIZ_CONFIG.integration?.geminiApiKeyPart1 && QUIZ_CONFIG.integration?.geminiApiKeyPart4 ? (QUIZ_CONFIG.integration.geminiApiKeyPart1 + QUIZ_CONFIG.integration.geminiApiKeyPart2 + QUIZ_CONFIG.integration.geminiApiKeyPart3 + QUIZ_CONFIG.integration.geminiApiKeyPart4) : (QUIZ_CONFIG.integration?.geminiApiKeyPart1 ? QUIZ_CONFIG.integration.geminiApiKeyPart1 + (QUIZ_CONFIG.integration.geminiApiKeyPart2 || '') : ''))
               })
             });
@@ -1415,11 +1417,10 @@
                 const rawClientModels = (QUIZ_CONFIG.integration && Array.isArray(QUIZ_CONFIG.integration.modelFallbacks) && QUIZ_CONFIG.integration.modelFallbacks.length > 0)
                   ? QUIZ_CONFIG.integration.modelFallbacks.slice(0, 6)
                   : [
+                      "gemini-3.1-flash-lite",
                       "gemini-3.7-flash",
-                      "gemini-3.6-flash",
-                      "gemini-3.5-flash",
-                      "gemini-3.5-flash-lite",
-                      "gemini-pro-latest"
+                      "gemini-flash-latest",
+                      "gemini-3.1-pro-preview"
                     ];
 
                 const clientModels = rawClientModels;
