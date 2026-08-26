@@ -241,7 +241,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.09
+            Build v1.10
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -270,25 +270,11 @@
   },
   "leadCapture": {
     "formType": "native",
-    "hubspot": {
-      "portalId": "",
-      "formId": "",
-      "region": "na1"
-    },
+    "customQuestions": [],
     "requireWorkEmail": true,
     "fields": {
-      "name": {
-        "label": "Full Name",
-        "enabled": true,
-        "required": true
-      },
-      "email": {
-        "label": "Work Email",
-        "enabled": true,
-        "required": true
-      },
-      "company": {
-        "label": "Company / Organization",
+      "projectStatus": {
+        "label": "Workplace Project Status",
         "enabled": true,
         "required": true
       },
@@ -302,13 +288,27 @@
         "enabled": false,
         "required": false
       },
-      "projectStatus": {
-        "label": "Workplace Project Status",
+      "name": {
+        "label": "Full Name",
+        "enabled": true,
+        "required": true
+      },
+      "company": {
+        "label": "Company / Organization",
+        "enabled": true,
+        "required": true
+      },
+      "email": {
+        "label": "Work Email",
         "enabled": true,
         "required": true
       }
     },
-    "customQuestions": []
+    "hubspot": {
+      "formId": "",
+      "portalId": "",
+      "region": "na1"
+    }
   },
   "ctaConfig": {
     "primaryCtaText": "Apply for Executive Strategy Consultation",
@@ -324,7 +324,7 @@
     "focusAreas": "Physical space readiness for generative AI workflows, STC 38+ acoustic enclosures & speech privacy, cognitive focus sanctuaries, agile reconfigurable team neighborhoods, distributed mobile power density, and hybrid video meeting equity (ISO 22955 & Steelcase ARC benchmarks)",
     "tone": "Authoritative, architectural, diagnostic, executive-level, and rigorously grounded in workplace ergonomics and environmental psychology"
   },
-  "buildVersion": "1.09",
+  "buildVersion": "1.10",
   "content": {
     "builderTitle": "Quiz Builder 4.3",
     "eyebrow": "Executive Diagnostic",
@@ -345,7 +345,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-26T01:46:19.665Z",
+    "lastPublishedAt": "2026-08-26T02:10:50.652Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
     "geminiApiKeyPart1": "AQ.Ab8RN6LgrH",
     "geminiApiKeyPart2": "WcNhmYwsinz4Y",
@@ -401,10 +401,10 @@
   ],
   "dangerZoneConfig": {
     "masterPrompt": "You are a Senior Workplace Strategy Architect & AI Workplace Specialist from Steelcase Applied Research + Consulting (ARC). You are conducting a high-level diagnostic assessment for the client organization.\n\nSURVEY INPUTS & DIAGNOSTIC DIRECTIVES:\nAnalyze the organization's scores across spatial adaptability, acoustic containment, and cognitive velocity. Synthesize their parameters against empirical workplace benchmarks.\n\nSTEP 1: MANDATORY WEB RESEARCH & COMPANY INTELLIGENCE\nPerform Google search research on the client organization to extract specific verified intelligence:\n1. Company background, industry sector, headquarters location, key offices, and scale.\n2. Recent workplace news, office openings, headquarters relocations, hybrid/RTO work policies.\n3. Major technology initiatives, AI strategy, engineering expansions, or digital transformation press news.\n- Insert hyperlinked HTML anchor tags with target=\"_blank\" rel=\"noopener noreferrer\" directly in the prose for every cited source.\n\nSTEP 2: HIGHLY TECHNICAL & INSIGHTFUL WORKPLACE DIAGNOSTIC REPORT\nWrite a deeply technical, analytical, and actionable workplace diagnostic report using professional workplace architecture and environmental psychology terminology (STC, RT60, Visual Privacy Index, Cognitive Load & Task Switching Overhead, Micro-Zones for Focused AI Prompting, Agile Pod Topologies). Attach inline cited source badges with hover tooltips and footnote links.",
-    "defaultRagBank": "1. **Microsoft (Modern AI Workplace & Focus Design)**: Reengineered team workspaces for AI co-creation and async focus, reducing task-switching overhead, eliminating 1.2 hours/day of redundant sync meetings per worker, and increasing developer output velocity by 22%.\n2. **Cisco (PENN 1 NYC & Osaka Agile Workspaces)**: Redesigned offices with flexible mobile power, wireless IoT, and acoustic micro-zones — achieved 40% increase in collaboration zones, 13% workstation capacity gain in 36% less footprint, and $1.2M annual energy/lease savings.\n3. **SAP (Flex Culture & Workplace Health Index)**: Redesigned physical spaces to prioritize well-being and acoustic privacy — boosted SAP's Business Health Index from 69% to 78%, generating $90M–$100M in annual operating profit increase per 1% index gain.\n4. **Salesforce / Slack (AI-Enabled Workspaces)**: Integrated dedicated generative AI war rooms and quiet prompting spaces — saved employees up to 1 month of lost productive time annually per employee and boosted customer response velocity by 14% per hour.\n5. **Engie Headquarters (Global Energy Leader, Paris/Milan)**: Consolidated 700 employees into a Steelcase-designed collaborative hub — fostered spontaneous cross-subsidiary innovation, reducing project delivery cycle times by 18%.\n6. **IIMA Ventures (Startup Accelerator Hub)**: Deployed Steelcase morphable Maker Labs and mobile acoustic boundaries — enabled founders to instantly switch between high-energy AI hacking and STC-isolated pitch prep, accelerating product iteration by 35%.\n7. **Paris WorkLife (Steelcase Hybrid Lab)**: Engineered technology-enabled video & acoustic focus pods — measured a 13% direct gain in daily employee productivity and a 28% increase in workplace satisfaction.\n8. **La-Z-Boy Global Headquarters**: Replaced traditional rigid cubicles with Steelcase open collaborative pods and quiet sanctuaries — resulted in a 45% increase in cross-departmental communication and higher talent retention.\n9. **UC Irvine / Wall Street Journal Focus Study**: Benchmark study showing open-plan office interruptions cost 23 minutes and 15 seconds to regain deep task focus — costing organizations up to $28,000 per employee per year in lost billable productivity.\n10. **Gensler Workplace Index (Acoustic Focus & Retention)**: Companies providing high-STC acoustic focus zones alongside collaborative hubs exhibit 21% higher cognitive performance scores and 18% lower voluntary employee turnover.\n11. **Steelcase Flex Agile Teams Study**: High-performing, cross-functional teams equipped with adaptable furniture and spatial reconfigurability are 5x more likely to be high-performing and profitable compared to static setups.\n12. **Accenture (\"Productive Anywhere\" Benchmark)**: Organizations optimizing hybrid spatial infrastructure retain 85% of high-value technical talent long-term, outperforming industry peers in revenue growth by 15%.\n13. **BMW Research & Innovation Center**: Implemented modular acoustic micro-hubs for engineering sprint teams — reduced prototype design error rates by 14% and shortened vehicle software release cycles.\n14. **Roche Pharmaceuticals (Agile Spatial Transformation)**: Redesigned R&D laboratories with flexible collaboration pods and quiet analysis sanctuaries — accelerated cross-functional clinical trial alignment by 25%.\n15. **Capital One Financial (Tech & AI Operations Hub)**: Integrated acoustic sound masking and reconfigurable team war rooms — lowered employee burnout rates by 30% and increased software engineering throughput.",
     "footnotesReferenceHtml": "",
-    "ragFiles": [],
-    "ragLinks": []
+    "ragLinks": [],
+    "defaultRagBank": "1. **Microsoft (Modern AI Workplace & Focus Design)**: Reengineered team workspaces for AI co-creation and async focus, reducing task-switching overhead, eliminating 1.2 hours/day of redundant sync meetings per worker, and increasing developer output velocity by 22%.\n2. **Cisco (PENN 1 NYC & Osaka Agile Workspaces)**: Redesigned offices with flexible mobile power, wireless IoT, and acoustic micro-zones — achieved 40% increase in collaboration zones, 13% workstation capacity gain in 36% less footprint, and $1.2M annual energy/lease savings.\n3. **SAP (Flex Culture & Workplace Health Index)**: Redesigned physical spaces to prioritize well-being and acoustic privacy — boosted SAP's Business Health Index from 69% to 78%, generating $90M–$100M in annual operating profit increase per 1% index gain.\n4. **Salesforce / Slack (AI-Enabled Workspaces)**: Integrated dedicated generative AI war rooms and quiet prompting spaces — saved employees up to 1 month of lost productive time annually per employee and boosted customer response velocity by 14% per hour.\n5. **Engie Headquarters (Global Energy Leader, Paris/Milan)**: Consolidated 700 employees into a Steelcase-designed collaborative hub — fostered spontaneous cross-subsidiary innovation, reducing project delivery cycle times by 18%.\n6. **IIMA Ventures (Startup Accelerator Hub)**: Deployed Steelcase morphable Maker Labs and mobile acoustic boundaries — enabled founders to instantly switch between high-energy AI hacking and STC-isolated pitch prep, accelerating product iteration by 35%.\n7. **Paris WorkLife (Steelcase Hybrid Lab)**: Engineered technology-enabled video & acoustic focus pods — measured a 13% direct gain in daily employee productivity and a 28% increase in workplace satisfaction.\n8. **La-Z-Boy Global Headquarters**: Replaced traditional rigid cubicles with Steelcase open collaborative pods and quiet sanctuaries — resulted in a 45% increase in cross-departmental communication and higher talent retention.\n9. **UC Irvine / Wall Street Journal Focus Study**: Benchmark study showing open-plan office interruptions cost 23 minutes and 15 seconds to regain deep task focus — costing organizations up to $28,000 per employee per year in lost billable productivity.\n10. **Gensler Workplace Index (Acoustic Focus & Retention)**: Companies providing high-STC acoustic focus zones alongside collaborative hubs exhibit 21% higher cognitive performance scores and 18% lower voluntary employee turnover.\n11. **Steelcase Flex Agile Teams Study**: High-performing, cross-functional teams equipped with adaptable furniture and spatial reconfigurability are 5x more likely to be high-performing and profitable compared to static setups.\n12. **Accenture (\"Productive Anywhere\" Benchmark)**: Organizations optimizing hybrid spatial infrastructure retain 85% of high-value technical talent long-term, outperforming industry peers in revenue growth by 15%.\n13. **BMW Research & Innovation Center**: Implemented modular acoustic micro-hubs for engineering sprint teams — reduced prototype design error rates by 14% and shortened vehicle software release cycles.\n14. **Roche Pharmaceuticals (Agile Spatial Transformation)**: Redesigned R&D laboratories with flexible collaboration pods and quiet analysis sanctuaries — accelerated cross-functional clinical trial alignment by 25%.\n15. **Capital One Financial (Tech & AI Operations Hub)**: Integrated acoustic sound masking and reconfigurable team war rooms — lowered employee burnout rates by 30% and increased software engineering throughput.",
+    "ragFiles": []
   },
   "results": [
     {
@@ -718,7 +718,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-26T01:46:20.627Z",
+  "updatedAt": "2026-08-26T02:10:51.571Z",
   "updatedBy": "Adam Lau (admin)"
 };
 
@@ -1245,8 +1245,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[10:10:47] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[10:10:47] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[10:24:17] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[10:24:17] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
@@ -1519,6 +1519,20 @@
       });
     }
 
+    async function submitTelBottom() {
+      const telVal = document.getElementById('tel-input-bottom')?.value;
+      if (!telVal) return;
+      telSent = true;
+      render();
+      await sendWebhook({
+        action: 'update',
+        email: lead.email,
+        tel: telVal,
+        phone: telVal,
+        timestamp: new Date().toISOString()
+      });
+    }
+
     async function sendWebhook(data) {
       const url = QUIZ_CONFIG.integration?.webhookUrl;
       if (!url) return;
@@ -1676,21 +1690,35 @@
       html += renderExtraBlocks(s5);
 
       // FULL-WIDTH CTA CARD AT BOTTOM OF SECTION 5 (ABOVE SOURCES)
-      html += '<div style="margin-top: 28px; background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 24px 28px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); width: 100%; box-sizing: border-box;">';
-      html += '<div style="display: inline-flex; align-items: center; gap: 6px; color: #059669; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: #ECFDF5; border: 1px solid #A7F3D0; padding: 4px 12px; border-radius: 9999px; margin-bottom: 12px;">';
-      html += '<span>✓</span> CONGRATULATIONS! YOU QUALIFY FOR AN EXECUTIVE STRATEGY CONSULTATION';
+      const primaryText = escapeHtml(ctaCfg.primaryCtaText || "Apply Now");
+      const secondaryText = escapeHtml(ctaCfg.secondaryCtaText || "Add Telephone (Optional)");
+      const isRedirect = ctaCfg.primaryCtaType === 'redirect' && ctaCfg.redirectUrl;
+      
+      html += '<div style="margin-top: 28px; background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 24px 28px; text-align: left; box-shadow: 0 4px 12px rgba(0,0,0,0.03); width: 100%; box-sizing: border-box;">';
+      html += '<div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:#059669; margin-bottom:8px; display:flex; align-items:center; gap:6px;">';
+      html += '✓ Congratulations! You Qualify for an Executive Strategy Consultation';
       html += '</div>';
-      html += '<h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 700; color: #0F172A;">Professional Assessment</h3>';
-      html += '<p style="margin: 0 auto 18px auto; font-size: 14px; color: #475569; max-width: 580px; line-height: 1.5;">Schedule a deep-dive session with a workplace strategy specialist to analyze your spatial parameters and acoustic requirements.</p>';
-      if (isApplied) {
-        html += '<div style="display: inline-flex; align-items: center; gap: 8px; color: #059669; background: #ECFDF5; border: 1px solid #6EE7B7; font-size: 14px; font-weight: 600; padding: 10px 24px; border-radius: 8px;">';
-        html += '<span>✓</span> Qualified for Consultation';
+      html += '<h4 style="margin:0 0 8px; font-size:16px;">Professional Assessment</h4>';
+      html += '<p style="font-size:13px; color:#5F6368; margin:0 0 16px;">Schedule a deep-dive session with a workplace strategy specialist.</p>';
+      
+      html += '<button class="btn btn-primary" id="btn-apply-cta-bottom" onclick="' + (isRedirect ? "window.open('" + escapeHtml(ctaCfg.redirectUrl) + "', '_blank')" : "requestAssessment()") + '" style="width:100%; justify-content:center; margin-bottom:12px; background-color: ' + ((isApplied && !isRedirect) ? '#9CA3AF' : 'var(--primary-color)') + '" ' + ((isApplied && !isRedirect) ? 'disabled' : '') + '>';
+      html += ((isApplied && !isRedirect) ? '✓ Request Sent' : '✉ ' + primaryText);
+      html += '</button>';
+
+      if (ctaCfg.secondaryCtaEnabled !== false) {
+        html += '<div id="tel-box-bottom" style="display:' + (isApplied && !telSent && !isRedirect ? 'block' : 'none') + '; background:white; padding:16px; border:1px solid #E5E7EB; border-radius:6px; margin-top:12px;">';
+        html += '<label style="font-size:12px; font-weight:600; display:block; margin-bottom:8px;">' + secondaryText + '</label>';
+        html += '<div style="display:flex; gap:8px;">';
+        html += '<input type="tel" id="tel-input-bottom" placeholder="+1..." style="flex:1; padding:8px 12px; border:1px solid #D1D5DB; border-radius:4px;" />';
+        html += '<button type="button" onclick="submitTelBottom()" class="btn btn-secondary" style="padding:8px 12px;">Send</button>';
         html += '</div>';
-      } else {
-        html += '<button type="button" onclick="requestAssessment()" style="background: #2563EB; color: #FFFFFF; font-weight: 600; font-size: 14px; padding: 12px 28px; border-radius: 8px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s ease; box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);">';
-        html += '<span>✉️</span> Apply Now';
-        html += '</button>';
+        html += '</div>';
+        html += '<div id="tel-saved-msg-bottom" style="display:' + (telSent ? 'block' : 'none') + '; font-size:13px; color:#059669; margin-top:8px;">✓ Phone saved</div>';
       }
+
+      html += '<div style="font-size:12px; color:#059669; display:flex; align-items:center; gap:6px; justify-content:center; margin-top:12px;">';
+      html += '✓ Qualified for Consultation';
+      html += '</div>';
       html += '</div>';
 
       html += '</div>';
