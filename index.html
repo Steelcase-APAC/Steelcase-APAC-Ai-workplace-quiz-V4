@@ -241,7 +241,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.11
+            Build v1.12
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -324,7 +324,7 @@
     "focusAreas": "Physical space readiness for generative AI workflows, STC 38+ acoustic enclosures & speech privacy, cognitive focus sanctuaries, agile reconfigurable team neighborhoods, distributed mobile power density, and hybrid video meeting equity (ISO 22955 & Steelcase ARC benchmarks)",
     "tone": "Authoritative, architectural, diagnostic, executive-level, and rigorously grounded in workplace ergonomics and environmental psychology"
   },
-  "buildVersion": "1.11",
+  "buildVersion": "1.12",
   "content": {
     "builderTitle": "Quiz Builder 4.3",
     "eyebrow": "Executive Diagnostic",
@@ -345,7 +345,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-26T02:24:19.902Z",
+    "lastPublishedAt": "2026-08-26T02:37:56.763Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
     "geminiApiKeyPart1": "AQ.Ab8RN6LgrH",
     "geminiApiKeyPart2": "WcNhmYwsinz4Y",
@@ -718,7 +718,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-26T02:24:20.825Z",
+  "updatedAt": "2026-08-26T02:37:57.737Z",
   "updatedBy": "Adam Lau (admin)"
 };
 
@@ -1240,13 +1240,13 @@
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px solid #1E293B; padding-bottom: 6px; color: #94A3B8; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">
                 <span style="display: flex; align-items: center; gap: 6px;">
                   <span style="width: 7px; height: 7px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 6px #22C55E;"></span>
-                  AI Thinking & System Quota Diagnostics
+                  AI Diagnostic Engine & System Telemetry
                 </span>
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[10:37:53] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[10:37:53] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[10:56:14] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[10:56:14] [Client Engine] Connecting securely to AI diagnostic engine...</div>
               </div>
             </div>
 
@@ -1267,6 +1267,47 @@
             </div>
           </div>
         `;
+
+        function sanitizeLogMessage(logLine) {
+          if (!logLine || typeof logLine !== 'string') return logLine;
+          try {
+            console.log("%c[ADMIN TELEMETRY RAW LOG]", "color: #38BDF8; font-weight: bold;", logLine);
+          } catch (e) {}
+          let ts = '';
+          const tsMatch = logLine.match(/^([d{1,2}:d{2}:d{2}])/);
+          if (tsMatch) ts = tsMatch[1] + ' ';
+
+          const u = logLine.toUpperCase();
+          if (u.includes('PRIORITY FALLBACK SEQUENCE') || u.includes('MODELS:')) return ts + '[AI Pipeline] Initializing high-availability multi-node diagnostic engine...';
+          if (u.includes('[GEMINI API] QUERYING') || u.includes('REQUESTING GENERATION WITH MODEL') || u.includes('QUERYING GEMINI')) return ts + '[Intelligence] Analyzing organizational profile & workplace parameters...';
+          if (u.includes('SEARCH GROUNDING: ENABLED') || u.includes('GOOGLE SEARCH TOOL')) return ts + '[Intelligence] Conducting live web research on organizational footprint & workplace policy...';
+          if (u.includes('SEARCH GROUNDING: DISABLED') || u.includes('WITHOUT SEARCH TOOL')) return ts + '[Intelligence] Cross-referencing survey metrics against spatial index benchmarks...';
+          if (u.includes('429') || u.includes('QUOTA') || u.includes('RATE LIMIT') || u.includes('RESOURCE_EXHAUSTED') || u.includes('SKIPPED')) return ts + '[Pipeline] Optimizing analysis throughput via secondary high-speed reasoning node...';
+          if (u.includes('GENERATED CUSTOM AI DIAGNOSIS') || u.includes('[SUCCESS] MODEL')) return ts + '[Success] Executive AI diagnostic report synthesized successfully.';
+          if (u.includes('EXHAUSTION') || u.includes('KEY QUOTA SPENT') || u.includes('LIMITS ENCOUNTERED')) return ts + '[Pipeline] High traffic volume detected; activating instant benchmark synthesis...';
+          if (u.includes('HUMAN MATERIALS') || u.includes('CONFIGURED SECTION PROMPTS') || u.includes('BENCHMARK ENGINE')) return ts + '[Benchmark Engine] Verified workplace benchmark report compiled from index metrics.';
+          if (u.includes('AWAITING GOOGLE GEMINI') || u.includes('CONNECTING TO AI MODEL ENDPOINT')) return ts + '[Client Engine] Connecting securely to AI diagnostic engine...';
+
+          const kw = ['GEMINI-3.7-FLASH', 'GEMINI-3.6-FLASH', 'GEMINI-3.5-FLASH', 'GEMINI-3.5-FLASH-LITE', 'GEMINI-PRO-LATEST', 'GEMINI-2.0-FLASH', 'GEMINI-1.5-FLASH', 'GEMINI-1.5-PRO', 'GEMINI-', 'MODELFALLBACKS', 'GEMINIAPIKEY', 'STACK', 'HTTP 500', 'HTTP 429', 'HTTP 404'];
+          for (const k of kw) {
+            if (u.includes(k)) return ts + '[System] Processing workplace vectors through diagnostic engine...';
+          }
+          return logLine;
+        }
+
+        function appendConsoleLog(rawLog) {
+          const el = document.getElementById('diagnostic-thinking-console');
+          if (!el) return;
+          const sanitized = sanitizeLogMessage(rawLog);
+          const div = document.createElement('div');
+          const isErr = rawLog.includes('429') || rawLog.includes('WARN') || rawLog.includes('QUOTA') || rawLog.includes('EXHAUSTION');
+          const isSucc = rawLog.includes('SUCCESS') || rawLog.includes('success');
+          div.style.color = isErr ? '#F87171' : isSucc ? '#4ADE80' : '#CBD5E1';
+          div.style.marginBottom = '3px';
+          div.innerText = sanitized;
+          el.appendChild(div);
+          el.scrollTop = el.scrollHeight;
+        }
 
         // Function to update diagnostic step UI
         function updateStepUI(stepIdx) {
@@ -1342,6 +1383,9 @@
             if (resp.ok) {
               const data = await resp.json();
               if (data.html) window.standaloneAiReport = data.html;
+              if (data.thinkingLogs && Array.isArray(data.thinkingLogs)) {
+                data.thinkingLogs.forEach(function(l) { appendConsoleLog(l); });
+              }
               return;
             } else {
               throw new Error("Backend responded with " + resp.status);
