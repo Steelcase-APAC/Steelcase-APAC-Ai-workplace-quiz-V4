@@ -241,7 +241,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.25
+            Build v1.26
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -262,11 +262,11 @@
   "activeTemplateId": "steelcase-arc-ai",
   "branding": {
     "primaryColor": "#1A73E8",
-    "accentColor": "#1D4ED8",
     "bodyColor": "#F1F3F4",
     "headerColor": "#3C4043",
     "logoUrl": "",
-    "showLogoInPdf": true
+    "showLogoInPdf": true,
+    "accentColor": "#1D4ED8"
   },
   "leadCapture": {
     "formType": "native",
@@ -324,12 +324,12 @@
     "focusAreas": "Physical space readiness for generative AI workflows, STC 38+ acoustic enclosures & speech privacy, cognitive focus sanctuaries, agile reconfigurable team neighborhoods, distributed mobile power density, and hybrid video meeting equity (ISO 22955 & Steelcase ARC benchmarks)",
     "tone": "Authoritative, architectural, diagnostic, executive-level, and rigorously grounded in workplace ergonomics and environmental psychology"
   },
-  "buildVersion": "1.25",
+  "buildVersion": "1.26",
   "content": {
-    "builderTitle": "Quiz Builder 4.31",
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
-    "description": "Diagnostic tool to evaluate physical infrastructure readiness for AI-enabled workflows, hybrid presence, and future spatial adaptability."
+    "description": "Diagnostic tool to evaluate physical infrastructure readiness for AI-enabled workflows, hybrid presence, and future spatial adaptability.",
+    "builderTitle": "Quiz Builder 4.31"
   },
   "integration": {
     "webhookUrl": "https://script.google.com/macros/s/AKfycbySg6P_zWyhgHUnLje8djqzuyAXocPwT_h6manjWfQ-q5E9GxrMgW5aaEHf7iKr52yQwA/exec",
@@ -345,7 +345,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-26T05:52:50.787Z",
+    "lastPublishedAt": "2026-08-26T06:03:55.417Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
     "geminiApiKeyPart1": "AIzaSyC5i",
     "geminiApiKeyPart2": "k-nQDKgrG9",
@@ -730,7 +730,7 @@
     "[Synthesis Engine] STAGE 4/4: Formatting executive brief & generating final recommendations...",
     "[Client Engine] 200 OK — Diagnostic stream complete."
   ],
-  "updatedAt": "2026-08-26T05:52:51.787Z",
+  "updatedAt": "2026-08-26T06:03:56.413Z",
   "updatedBy": "Adam Lau (admin)"
 };
 
@@ -1119,6 +1119,37 @@
           </div>
         `;
       }
+      
+      syncCtaStates();
+    }
+
+    function syncCtaStates() {
+      var isRedirect = QUIZ_CONFIG.ctaConfig && QUIZ_CONFIG.ctaConfig.primaryCtaType === 'redirect';
+      var primaryText = escapeHtml((QUIZ_CONFIG.ctaConfig && QUIZ_CONFIG.ctaConfig.primaryCtaText) || "Apply Now");
+      
+      var ctaBtn = document.getElementById('btn-apply-cta');
+      var ctaBtnBottom = document.getElementById('btn-apply-cta-bottom');
+      
+      if (ctaBtn) {
+        ctaBtn.disabled = (isApplied && !isRedirect);
+        ctaBtn.style.backgroundColor = (isApplied && !isRedirect) ? '#9CA3AF' : 'var(--primary-color)';
+        ctaBtn.innerHTML = (isApplied && !isRedirect) ? '✓ Request Sent' : '✉ ' + primaryText;
+      }
+      if (ctaBtnBottom) {
+        ctaBtnBottom.disabled = (isApplied && !isRedirect);
+        ctaBtnBottom.style.backgroundColor = (isApplied && !isRedirect) ? '#9CA3AF' : 'var(--primary-color)';
+        ctaBtnBottom.innerHTML = (isApplied && !isRedirect) ? '✓ Request Sent' : '✉ ' + primaryText;
+      }
+
+      var telBox = document.getElementById('tel-box');
+      var telBoxBottom = document.getElementById('tel-box-bottom');
+      if (telBox) telBox.style.display = (isApplied && !telSent && !isRedirect) ? 'block' : 'none';
+      if (telBoxBottom) telBoxBottom.style.display = (isApplied && !telSent && !isRedirect) ? 'block' : 'none';
+
+      var telMsg = document.getElementById('tel-saved-msg');
+      var telMsgBottom = document.getElementById('tel-saved-msg-bottom');
+      if (telMsg) telMsg.style.display = telSent ? 'block' : 'none';
+      if (telMsgBottom) telMsgBottom.style.display = telSent ? 'block' : 'none';
     }
 
     function selectAnswer(qId, val) {
@@ -1257,8 +1288,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[14:03:53] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[14:03:53] [Client Engine] Connecting securely to AI diagnostic engine...</div>
+                <div style="color: #CBD5E1;">[14:44:03] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[14:44:03] [Client Engine] Connecting securely to AI diagnostic engine...</div>
               </div>
             </div>
 
@@ -1826,6 +1857,8 @@
       const companyName = escapeHtml(lead.company || 'Organization');
       const leadNameStr = escapeHtml(lead.name || 'Executive');
       const leadRoleStr = escapeHtml(lead.role || 'Workplace Leader');
+      const phoneStr = lead.phone ? ' &nbsp;|&nbsp; <strong>Phone:</strong> ' + escapeHtml(lead.phone) : '';
+      const dateStr = new Date().toLocaleDateString();
       const score = calculateScore();
       const reportHtml = window.standaloneAiReport || generateStaticAiReport(score, lead.company, lead.name);
 
@@ -1860,7 +1893,7 @@
       printDoc.write('@media print { .no-print { display: none !important; } body { padding: 0; } }');
       printDoc.write('</style></head><body>');
       printDoc.write('<div class="print-bar no-print"><span style="font-size: 13px; color: #4B5563;">📄 Printable AI Readiness Diagnostic Report — Save as PDF via browser print</span><button onclick="window.print()" style="background: #1D4ED8; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 13px;">🖨️ Save as PDF</button></div>');
-      printDoc.write('<div class="header-banner"><div>' + logoHtml + '<h1>Steelcase ARC — AI Workplace Readiness Diagnostic</h1><div class="meta"><strong>Client:</strong> ' + companyName + ' &nbsp;|&nbsp; <strong>Contact:</strong> ' + leadNameStr + ' (' + leadRoleStr + ') &nbsp;|&nbsp; <strong>Date:</strong> ' + new Date().toLocaleDateString() + '</div></div><div class="score-badge"><div class="score-num">' + score + '</div><div class="score-lbl">Readiness Score</div></div></div>');
+      printDoc.write('<div class="header-banner"><div>' + logoHtml + '<h1>Steelcase ARC — AI Workplace Readiness Diagnostic</h1><div class="meta"><strong>Client:</strong> ' + companyName + ' &nbsp;|&nbsp; <strong>Contact:</strong> ' + leadNameStr + ' (' + leadRoleStr + ')' + phoneStr + ' &nbsp;|&nbsp; <strong>Date:</strong> ' + dateStr + '</div></div><div class="score-badge"><div class="score-num">' + score + '</div><div class="score-lbl">Readiness Score</div></div></div>');
       printDoc.write('<div class="report-content">' + reportHtml + '</div>');
       printDoc.write('<' + 'script>window.onload = function() { setTimeout(function() { window.print(); }, 500); };<' + '/script>');
       printDoc.write('</body></html>');
