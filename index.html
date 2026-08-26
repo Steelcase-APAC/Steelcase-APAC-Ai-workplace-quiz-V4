@@ -241,7 +241,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.15
+            Build v1.16
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -324,19 +324,7 @@
     "focusAreas": "Physical space readiness for generative AI workflows, STC 38+ acoustic enclosures & speech privacy, cognitive focus sanctuaries, agile reconfigurable team neighborhoods, distributed mobile power density, and hybrid video meeting equity (ISO 22955 & Steelcase ARC benchmarks)",
     "tone": "Authoritative, architectural, diagnostic, executive-level, and rigorously grounded in workplace ergonomics and environmental psychology"
   },
-  "diagnosticLogs": [
-    "[Client Engine] Initiating diagnostic pipeline for \"{company}\"...",
-    "[Intelligence] STAGE 1/4: Crawling public filings & RTO policy benchmarks...",
-    "[Client Engine] Connecting securely to AI diagnostic engine (/api/analyze-company)...",
-    "[Data Engine] Querying spatial index database & acoustic isolation models...",
-    "[Data Engine] STAGE 2/4: Processing survey index metrics ({score}/100)...",
-    "[Acoustics Engine] Calculating STC noise isolation index & focus zone ratios...",
-    "[Acoustics Engine] STAGE 3/4: Assessing spatial adaptability & IT power grid...",
-    "[Synthesis Engine] Cross-referencing response vectors against Steelcase ARC benchmarks...",
-    "[Synthesis Engine] STAGE 4/4: Formatting executive brief & generating final recommendations...",
-    "[Client Engine] 200 OK — Diagnostic stream complete."
-  ],
-  "buildVersion": "1.15",
+  "buildVersion": "1.16",
   "content": {
     "builderTitle": "Quiz Builder 4.31",
     "eyebrow": "Executive Diagnostic",
@@ -357,7 +345,7 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-26T03:03:06.172Z",
+    "lastPublishedAt": "2026-08-26T03:40:03.953Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
     "geminiApiKeyPart1": "AIzaSyC5i",
     "geminiApiKeyPart2": "k-nQDKgrG9",
@@ -730,7 +718,19 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-26T03:36:30.247Z",
+  "diagnosticLogs": [
+    "[Client Engine] Initiating diagnostic pipeline for \"{company}\"...",
+    "[Intelligence] STAGE 1/4: Crawling public filings & RTO policy benchmarks...",
+    "[Client Engine] Connecting securely to AI diagnostic engine (/api/analyze-company)...",
+    "[Data Engine] Querying spatial index database & acoustic isolation models...",
+    "[Data Engine] STAGE 2/4: Processing survey index metrics ({score}/100)...",
+    "[Acoustics Engine] Calculating STC noise isolation index & focus zone ratios...",
+    "[Acoustics Engine] STAGE 3/4: Assessing spatial adaptability & IT power grid...",
+    "[Synthesis Engine] Cross-referencing response vectors against Steelcase ARC benchmarks...",
+    "[Synthesis Engine] STAGE 4/4: Formatting executive brief & generating final recommendations...",
+    "[Client Engine] 200 OK — Diagnostic stream complete."
+  ],
+  "updatedAt": "2026-08-26T03:40:04.939Z",
   "updatedBy": "Adam Lau (admin)"
 };
 
@@ -1257,7 +1257,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[11:40:01] ${(QUIZ_CONFIG.diagnosticLogs && QUIZ_CONFIG.diagnosticLogs.length > 0 ? QUIZ_CONFIG.diagnosticLogs[0] : '[Client Engine] Initiating diagnostic pipeline for "{company}"...').replace(/{company}/g, lead.company || 'Organization').replace(/{score}/g, calculateScore())}</div>
+                <div style="color: #CBD5E1;">[11:59:19] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[11:59:19] [Client Engine] Connecting securely to AI diagnostic engine...</div>
               </div>
             </div>
 
@@ -1352,41 +1353,30 @@
           }
         }
 
-        // Dynamically stagger step transitions & detailed console ticks from QUIZ_CONFIG
-        const logs = QUIZ_CONFIG.diagnosticLogs && QUIZ_CONFIG.diagnosticLogs.length > 0 
-            ? QUIZ_CONFIG.diagnosticLogs 
-            : [
-                "[Client Engine] Initiating diagnostic pipeline for \"{company}\"...",
-                "[Intelligence] STAGE 1/4: Crawling public filings & RTO policy benchmarks...",
-                "[Client Engine] Connecting securely to AI diagnostic engine (/api/analyze-company)...",
-                "[Data Engine] Querying spatial index database & acoustic isolation models...",
-                "[Data Engine] STAGE 2/4: Processing survey index metrics ({score}/100)...",
-                "[Acoustics Engine] Calculating STC noise isolation index & focus zone ratios...",
-                "[Acoustics Engine] STAGE 3/4: Assessing spatial adaptability & IT power grid...",
-                "[Synthesis Engine] Cross-referencing response vectors against Steelcase ARC benchmarks...",
-                "[Synthesis Engine] STAGE 4/4: Formatting executive brief & generating final recommendations...",
-                "[Client Engine] 200 OK — Diagnostic stream complete."
-              ];
-              
-        const remainingLogs = logs.slice(1);
-        const intervalMs = remainingLogs.length > 0 ? 8000 / remainingLogs.length : 1000;
+        // Stagger step transitions & detailed console ticks
+        appendConsoleLog('[' + new Date().toLocaleTimeString('en-US', { hour12: false }) + '] [Intelligence] STAGE 1/4: Crawling public filings & RTO policy benchmarks...');
         
-        remainingLogs.forEach((logText, idx) => {
-          setTimeout(function() {
-            let t = logText.replace(/{company}/g, lead.company || 'Organization');
-            t = t.replace(/{score}/g, calculateScore());
-            appendConsoleLog('[' + new Date().toLocaleTimeString('en-US', { hour12: false }) + '] ' + t);
-            
-            const percent = (idx + 1) / remainingLogs.length;
-            if (percent >= 0.25 && percent < 0.5) {
-              updateStepUI(1);
-            } else if (percent >= 0.5 && percent < 0.75) {
-              updateStepUI(2);
-            } else if (percent >= 0.75 && percent < 1) {
-              updateStepUI(3);
-            }
-          }, intervalMs * (idx + 1));
-        });
+        setTimeout(function() {
+          appendConsoleLog('[' + new Date().toLocaleTimeString('en-US', { hour12: false }) + '] [Data Engine] Querying spatial index database & acoustic isolation models...');
+        }, 1100);
+
+        const t1 = setTimeout(function() {
+          updateStepUI(1);
+          appendConsoleLog('[' + new Date().toLocaleTimeString('en-US', { hour12: false }) + '] [Data Engine] STAGE 2/4: Processing survey index metrics...');
+          appendConsoleLog('[' + new Date().toLocaleTimeString('en-US', { hour12: false }) + '] [Acoustics Engine] Calculating STC noise isolation index & focus zone ratios...');
+        }, 2600);
+
+        const t2 = setTimeout(function() {
+          updateStepUI(2);
+          appendConsoleLog('[' + new Date().toLocaleTimeString('en-US', { hour12: false }) + '] [Acoustics Engine] STAGE 3/4: Assessing spatial adaptability & IT power grid...');
+          appendConsoleLog('[' + new Date().toLocaleTimeString('en-US', { hour12: false }) + '] [Synthesis Engine] Cross-referencing response vectors against Steelcase ARC benchmarks...');
+        }, 5200);
+
+        const t3 = setTimeout(function() {
+          updateStepUI(3);
+          appendConsoleLog('[' + new Date().toLocaleTimeString('en-US', { hour12: false }) + '] [Synthesis Engine] STAGE 4/4: Formulating 3-pillar architectural & spatial recommendations...');
+          appendConsoleLog('[' + new Date().toLocaleTimeString('en-US', { hour12: false }) + '] [Quality Check] Finalizing executive diagnostic report & HTML formatting...');
+        }, 8200);
 
         // Run webhook in parallel
         sendWebhook({
