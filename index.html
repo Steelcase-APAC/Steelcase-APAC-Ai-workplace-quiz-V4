@@ -241,7 +241,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.26
+            Build v1.27
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -269,45 +269,45 @@
     "accentColor": "#1D4ED8"
   },
   "leadCapture": {
-    "formType": "native",
     "customQuestions": [],
     "requireWorkEmail": true,
+    "hubspot": {
+      "region": "na1",
+      "formId": "",
+      "portalId": ""
+    },
+    "formType": "native",
     "fields": {
-      "projectStatus": {
-        "label": "Workplace Project Status",
+      "company": {
+        "label": "Company / Organization",
         "enabled": true,
         "required": true
-      },
-      "role": {
-        "label": "Job Title / Role",
-        "enabled": true,
-        "required": false
       },
       "phone": {
         "label": "Direct Phone",
         "enabled": false,
         "required": false
       },
+      "email": {
+        "enabled": true,
+        "required": true,
+        "label": "Work Email"
+      },
+      "role": {
+        "required": false,
+        "enabled": true,
+        "label": "Job Title / Role"
+      },
       "name": {
         "label": "Full Name",
-        "enabled": true,
-        "required": true
+        "required": true,
+        "enabled": true
       },
-      "company": {
-        "label": "Company / Organization",
-        "enabled": true,
-        "required": true
-      },
-      "email": {
-        "label": "Work Email",
+      "projectStatus": {
+        "label": "Workplace Project Status",
         "enabled": true,
         "required": true
       }
-    },
-    "hubspot": {
-      "formId": "",
-      "portalId": "",
-      "region": "na1"
     }
   },
   "ctaConfig": {
@@ -324,7 +324,7 @@
     "focusAreas": "Physical space readiness for generative AI workflows, STC 38+ acoustic enclosures & speech privacy, cognitive focus sanctuaries, agile reconfigurable team neighborhoods, distributed mobile power density, and hybrid video meeting equity (ISO 22955 & Steelcase ARC benchmarks)",
     "tone": "Authoritative, architectural, diagnostic, executive-level, and rigorously grounded in workplace ergonomics and environmental psychology"
   },
-  "buildVersion": "1.26",
+  "buildVersion": "1.27",
   "content": {
     "eyebrow": "Executive Diagnostic",
     "title": "AI Workplace Readiness Index",
@@ -345,12 +345,12 @@
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-26T06:03:55.417Z",
+    "lastPublishedAt": "2026-08-26T06:44:08.513Z",
     "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
-    "geminiApiKeyPart1": "AIzaSyC5i",
-    "geminiApiKeyPart2": "k-nQDKgrG9",
-    "geminiApiKeyPart3": "whtB2S8J_X",
-    "geminiApiKeyPart4": "ga5k3pYMTs"
+    "geminiApiKeyPart1": "AQ.Ab8RN6IM1-",
+    "geminiApiKeyPart2": "PypL6dzG_hNQu",
+    "geminiApiKeyPart3": "S-oWvLBvdikXq",
+    "geminiApiKeyPart4": "FOhDro51aSO94w"
   },
   "reportSections": [
     {
@@ -401,9 +401,9 @@
   ],
   "dangerZoneConfig": {
     "masterPrompt": "You are a Senior Workplace Strategy Architect & AI Workplace Specialist from Steelcase Applied Research + Consulting (ARC). You are conducting a high-level diagnostic assessment for the client organization.\n\nSURVEY INPUTS & DIAGNOSTIC DIRECTIVES:\nAnalyze the organization's scores across spatial adaptability, acoustic containment, and cognitive velocity. Synthesize their parameters against empirical workplace benchmarks.\n\nSTEP 1: MANDATORY WEB RESEARCH & COMPANY INTELLIGENCE\nPerform Google search research on the client organization to extract specific verified intelligence:\n1. Company background, industry sector, headquarters location, key offices, and scale.\n2. Recent workplace news, office openings, headquarters relocations, hybrid/RTO work policies.\n3. Major technology initiatives, AI strategy, engineering expansions, or digital transformation press news.\n- Insert hyperlinked HTML anchor tags with target=\"_blank\" rel=\"noopener noreferrer\" directly in the prose for every cited source.\n\nSTEP 2: HIGHLY TECHNICAL & INSIGHTFUL WORKPLACE DIAGNOSTIC REPORT\nWrite a deeply technical, analytical, and actionable workplace diagnostic report using professional workplace architecture and environmental psychology terminology (STC, RT60, Visual Privacy Index, Cognitive Load & Task Switching Overhead, Micro-Zones for Focused AI Prompting, Agile Pod Topologies). Attach inline cited source badges with hover tooltips and footnote links.",
-    "footnotesReferenceHtml": "",
     "ragLinks": [],
     "defaultRagBank": "1. **Microsoft (Modern AI Workplace & Focus Design)**: Reengineered team workspaces for AI co-creation and async focus, reducing task-switching overhead, eliminating 1.2 hours/day of redundant sync meetings per worker, and increasing developer output velocity by 22%.\n2. **Cisco (PENN 1 NYC & Osaka Agile Workspaces)**: Redesigned offices with flexible mobile power, wireless IoT, and acoustic micro-zones — achieved 40% increase in collaboration zones, 13% workstation capacity gain in 36% less footprint, and $1.2M annual energy/lease savings.\n3. **SAP (Flex Culture & Workplace Health Index)**: Redesigned physical spaces to prioritize well-being and acoustic privacy — boosted SAP's Business Health Index from 69% to 78%, generating $90M–$100M in annual operating profit increase per 1% index gain.\n4. **Salesforce / Slack (AI-Enabled Workspaces)**: Integrated dedicated generative AI war rooms and quiet prompting spaces — saved employees up to 1 month of lost productive time annually per employee and boosted customer response velocity by 14% per hour.\n5. **Engie Headquarters (Global Energy Leader, Paris/Milan)**: Consolidated 700 employees into a Steelcase-designed collaborative hub — fostered spontaneous cross-subsidiary innovation, reducing project delivery cycle times by 18%.\n6. **IIMA Ventures (Startup Accelerator Hub)**: Deployed Steelcase morphable Maker Labs and mobile acoustic boundaries — enabled founders to instantly switch between high-energy AI hacking and STC-isolated pitch prep, accelerating product iteration by 35%.\n7. **Paris WorkLife (Steelcase Hybrid Lab)**: Engineered technology-enabled video & acoustic focus pods — measured a 13% direct gain in daily employee productivity and a 28% increase in workplace satisfaction.\n8. **La-Z-Boy Global Headquarters**: Replaced traditional rigid cubicles with Steelcase open collaborative pods and quiet sanctuaries — resulted in a 45% increase in cross-departmental communication and higher talent retention.\n9. **UC Irvine / Wall Street Journal Focus Study**: Benchmark study showing open-plan office interruptions cost 23 minutes and 15 seconds to regain deep task focus — costing organizations up to $28,000 per employee per year in lost billable productivity.\n10. **Gensler Workplace Index (Acoustic Focus & Retention)**: Companies providing high-STC acoustic focus zones alongside collaborative hubs exhibit 21% higher cognitive performance scores and 18% lower voluntary employee turnover.\n11. **Steelcase Flex Agile Teams Study**: High-performing, cross-functional teams equipped with adaptable furniture and spatial reconfigurability are 5x more likely to be high-performing and profitable compared to static setups.\n12. **Accenture (\"Productive Anywhere\" Benchmark)**: Organizations optimizing hybrid spatial infrastructure retain 85% of high-value technical talent long-term, outperforming industry peers in revenue growth by 15%.\n13. **BMW Research & Innovation Center**: Implemented modular acoustic micro-hubs for engineering sprint teams — reduced prototype design error rates by 14% and shortened vehicle software release cycles.\n14. **Roche Pharmaceuticals (Agile Spatial Transformation)**: Redesigned R&D laboratories with flexible collaboration pods and quiet analysis sanctuaries — accelerated cross-functional clinical trial alignment by 25%.\n15. **Capital One Financial (Tech & AI Operations Hub)**: Integrated acoustic sound masking and reconfigurable team war rooms — lowered employee burnout rates by 30% and increased software engineering throughput.",
+    "footnotesReferenceHtml": "",
     "ragFiles": []
   },
   "results": [
@@ -730,7 +730,7 @@
     "[Synthesis Engine] STAGE 4/4: Formatting executive brief & generating final recommendations...",
     "[Client Engine] 200 OK — Diagnostic stream complete."
   ],
-  "updatedAt": "2026-08-26T06:03:56.413Z",
+  "updatedAt": "2026-08-26T06:47:58.946Z",
   "updatedBy": "Adam Lau (admin)"
 };
 
@@ -1288,8 +1288,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[14:44:03] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[14:44:03] [Client Engine] Connecting securely to AI diagnostic engine...</div>
+                <div style="color: #CBD5E1;">[14:48:03] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[14:48:03] [Client Engine] Connecting securely to AI diagnostic engine...</div>
               </div>
             </div>
 
