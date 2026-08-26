@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Workplace Readiness Index</title>
+  <title>AI Workplace Readiness Index (V4)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -241,7 +241,7 @@
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
           <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(59, 130, 246, 0.25); border: 1px solid rgba(147, 197, 253, 0.4); color: #93C5FD; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; font-family: SFMono-Regular, Consolas, monospace;">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; box-shadow: 0 0 6px #60A5FA;"></span>
-            Build v1.05
+            Build v1.02
           </div>
           <div class="progress-card" style="width: 100%;">
             <div style="font-size:12px; font-weight:600; color:#9AA0A6; text-transform:uppercase;" id="progress-label">Data Collection</div>
@@ -262,11 +262,11 @@
   "activeTemplateId": "steelcase-arc-ai",
   "branding": {
     "primaryColor": "#1A73E8",
-    "accentColor": "#1D4ED8",
     "bodyColor": "#F1F3F4",
     "headerColor": "#3C4043",
     "logoUrl": "",
-    "showLogoInPdf": true
+    "showLogoInPdf": true,
+    "accentColor": "#1D4ED8"
   },
   "leadCapture": {
     "formType": "native",
@@ -320,37 +320,33 @@
     "disclaimer": "Confidential diagnostic prepared by Steelcase Applied Research + Consulting (ARC)."
   },
   "aiPersona": {
-    "role": "Senior Workplace Strategy Architect & AI Workplace Specialist at Steelcase Applied Research + Consulting (ARC)",
-    "focusAreas": "Spatial adaptability, STC 38+ acoustic enclosures, cognitive recovery, agile pods, and power infrastructure",
-    "tone": "Executive, authoritative, architectural, and data-driven"
+    "role": "Senior Principal Workplace Strategy Architect & AI Workplace Fellow at Steelcase Applied Research + Consulting (ARC)",
+    "focusAreas": "Physical space readiness for generative AI workflows, STC 38+ acoustic enclosures & speech privacy, cognitive focus sanctuaries, agile reconfigurable team neighborhoods, distributed mobile power density, and hybrid video meeting equity (ISO 22955 & Steelcase ARC benchmarks)",
+    "tone": "Authoritative, architectural, diagnostic, executive-level, and rigorously grounded in workplace ergonomics and environmental psychology"
   },
-  "buildVersion": "1.05",
+  "buildVersion": "1.02",
   "content": {
-    "builderTitle": "Quiz Builder 4.3",
-    "eyebrow": "Executive Diagnostic",
-    "title": "AI Workplace Readiness Index",
-    "description": "Diagnostic tool to evaluate physical infrastructure readiness for AI-enabled workflows, hybrid presence, and future spatial adaptability."
+    "eyebrow": "Executive Diagnostic (V4)",
+    "title": "AI Workplace Readiness Index (V4)",
+    "description": "Diagnostic tool to evaluate physical infrastructure readiness for AI-enabled workflows, hybrid presence, and future spatial adaptability.",
+    "builderTitle": "Quiz Builder 4.3"
   },
   "integration": {
-    "webhookUrl": "https://script.google.com/macros/s/AKfycbySg6P_zWyhgHUnLje8djqzuyAXocPwT_h6manjWfQ-q5E9GxrMgW5aaEHf7iKr52yQwA/exec",
+    "webhookUrl": "",
     "geminiApiKey": "",
     "modelFallbacks": [
-      "gemini-pro-latest",
       "gemini-3.7-flash",
       "gemini-3.6-flash",
       "gemini-3.5-flash",
-      "gemini-3.1-pro-preview"
+      "gemini-3.5-flash-lite",
+      "gemini-pro-latest"
     ],
     "githubToken": "",
     "githubRepo": "Steelcase-APAC/Steelcase-APAC-Ai-workplace-quiz-V4",
     "githubBranch": "main",
     "githubFilePath": "index.html",
-    "lastPublishedAt": "2026-08-26T00:34:04.685Z",
-    "lastPublishUrl": "https://steelcase-apac.github.io/Steelcase-APAC-Ai-workplace-quiz-V4/",
-    "geminiApiKeyPart1": "AQ.Ab8RN6LgrH",
-    "geminiApiKeyPart2": "WcNhmYwsinz4Y",
-    "geminiApiKeyPart3": "KR7S0YwW3174J",
-    "geminiApiKeyPart4": "noE7_apqaUIUKg"
+    "lastPublishedAt": "",
+    "lastPublishUrl": ""
   },
   "reportSections": [
     {
@@ -368,7 +364,7 @@
       "eyebrow": "02. AI Diagnostic",
       "sectionHeading": "Technical Score Breakdown & Readiness Analysis",
       "description": "Analytical interpretation of what your readiness score means for spatial performance, acoustic privacy, cognitive focus, and bottom-line productivity.",
-      "prompt": "Analyze the organization's survey answers and overall score ({score}/100). Search online for recent verified information about {company}, focusing strictly on their workplace culture, return-to-office/hybrid policies, recent leadership/people movements, and office footprint changes.\n\nWrite a concise 2-paragraph analysis (max 150-200 words total):\n- Paragraph 1: Synthesize their survey score with their real-world corporate workplace context and recent workforce/leadership dynamics.\n- Paragraph 2: Highlight how their current physical workplace setup directly impacts employee focus, collaboration latency, and operational efficiency.",
+      "prompt": "Analyze the user's survey responses and provide deep analytical interpretation of what their readiness score means for spatial performance, acoustic privacy, cognitive focus, and bottom-line productivity.",
       "ragFiles": []
     },
     {
@@ -386,7 +382,7 @@
       "eyebrow": "04. Strategic Roadmap",
       "sectionHeading": "High-Performance Spatial Optimization Roadmap",
       "description": "Tailored strategic workplace interventions, architectural configurations, and actionable next steps.",
-      "prompt": "Based on {company}'s survey responses, score ({score}/100), and verified workplace context, provide a concise, high-impact spatial roadmap (max 2 short paragraphs or 3 tight bullet points):\n- Outline 3 targeted interventions (e.g. acoustic focus micro-pods, agile reconfigurable team zones, and power drop flexibility).\n- Directly connect each intervention to the company's culture, people workflows, and surveyed friction points.\n- Keep the recommendations concise, punchy, and actionable.",
+      "prompt": "Based on the organization's scores and the uploaded reference material, outline 3 high-impact strategic workplace interventions, architectural configurations, and actionable next steps.",
       "ragFiles": []
     },
     {
@@ -402,7 +398,7 @@
   "dangerZoneConfig": {
     "masterPrompt": "You are a Senior Workplace Strategy Architect & AI Workplace Specialist from Steelcase Applied Research + Consulting (ARC). You are conducting a high-level diagnostic assessment for the client organization.\n\nSURVEY INPUTS & DIAGNOSTIC DIRECTIVES:\nAnalyze the organization's scores across spatial adaptability, acoustic containment, and cognitive velocity. Synthesize their parameters against empirical workplace benchmarks.\n\nSTEP 1: MANDATORY WEB RESEARCH & COMPANY INTELLIGENCE\nPerform Google search research on the client organization to extract specific verified intelligence:\n1. Company background, industry sector, headquarters location, key offices, and scale.\n2. Recent workplace news, office openings, headquarters relocations, hybrid/RTO work policies.\n3. Major technology initiatives, AI strategy, engineering expansions, or digital transformation press news.\n- Insert hyperlinked HTML anchor tags with target=\"_blank\" rel=\"noopener noreferrer\" directly in the prose for every cited source.\n\nSTEP 2: HIGHLY TECHNICAL & INSIGHTFUL WORKPLACE DIAGNOSTIC REPORT\nWrite a deeply technical, analytical, and actionable workplace diagnostic report using professional workplace architecture and environmental psychology terminology (STC, RT60, Visual Privacy Index, Cognitive Load & Task Switching Overhead, Micro-Zones for Focused AI Prompting, Agile Pod Topologies). Attach inline cited source badges with hover tooltips and footnote links.",
     "defaultRagBank": "1. **Microsoft (Modern AI Workplace & Focus Design)**: Reengineered team workspaces for AI co-creation and async focus, reducing task-switching overhead, eliminating 1.2 hours/day of redundant sync meetings per worker, and increasing developer output velocity by 22%.\n2. **Cisco (PENN 1 NYC & Osaka Agile Workspaces)**: Redesigned offices with flexible mobile power, wireless IoT, and acoustic micro-zones — achieved 40% increase in collaboration zones, 13% workstation capacity gain in 36% less footprint, and $1.2M annual energy/lease savings.\n3. **SAP (Flex Culture & Workplace Health Index)**: Redesigned physical spaces to prioritize well-being and acoustic privacy — boosted SAP's Business Health Index from 69% to 78%, generating $90M–$100M in annual operating profit increase per 1% index gain.\n4. **Salesforce / Slack (AI-Enabled Workspaces)**: Integrated dedicated generative AI war rooms and quiet prompting spaces — saved employees up to 1 month of lost productive time annually per employee and boosted customer response velocity by 14% per hour.\n5. **Engie Headquarters (Global Energy Leader, Paris/Milan)**: Consolidated 700 employees into a Steelcase-designed collaborative hub — fostered spontaneous cross-subsidiary innovation, reducing project delivery cycle times by 18%.\n6. **IIMA Ventures (Startup Accelerator Hub)**: Deployed Steelcase morphable Maker Labs and mobile acoustic boundaries — enabled founders to instantly switch between high-energy AI hacking and STC-isolated pitch prep, accelerating product iteration by 35%.\n7. **Paris WorkLife (Steelcase Hybrid Lab)**: Engineered technology-enabled video & acoustic focus pods — measured a 13% direct gain in daily employee productivity and a 28% increase in workplace satisfaction.\n8. **La-Z-Boy Global Headquarters**: Replaced traditional rigid cubicles with Steelcase open collaborative pods and quiet sanctuaries — resulted in a 45% increase in cross-departmental communication and higher talent retention.\n9. **UC Irvine / Wall Street Journal Focus Study**: Benchmark study showing open-plan office interruptions cost 23 minutes and 15 seconds to regain deep task focus — costing organizations up to $28,000 per employee per year in lost billable productivity.\n10. **Gensler Workplace Index (Acoustic Focus & Retention)**: Companies providing high-STC acoustic focus zones alongside collaborative hubs exhibit 21% higher cognitive performance scores and 18% lower voluntary employee turnover.\n11. **Steelcase Flex Agile Teams Study**: High-performing, cross-functional teams equipped with adaptable furniture and spatial reconfigurability are 5x more likely to be high-performing and profitable compared to static setups.\n12. **Accenture (\"Productive Anywhere\" Benchmark)**: Organizations optimizing hybrid spatial infrastructure retain 85% of high-value technical talent long-term, outperforming industry peers in revenue growth by 15%.\n13. **BMW Research & Innovation Center**: Implemented modular acoustic micro-hubs for engineering sprint teams — reduced prototype design error rates by 14% and shortened vehicle software release cycles.\n14. **Roche Pharmaceuticals (Agile Spatial Transformation)**: Redesigned R&D laboratories with flexible collaboration pods and quiet analysis sanctuaries — accelerated cross-functional clinical trial alignment by 25%.\n15. **Capital One Financial (Tech & AI Operations Hub)**: Integrated acoustic sound masking and reconfigurable team war rooms — lowered employee burnout rates by 30% and increased software engineering throughput.",
-    "footnotesReferenceHtml": "",
+    "footnotesReferenceHtml": "<div class=\"footnotes-box\">\n  <h4>📚 Cited Sources & Benchmark Research References</h4>\n  <ol class=\"footnotes-list\">\n    <li id=\"fn-uc-irvine\"><strong>UC Irvine / Wall Street Journal Focus Study:</strong> Workplace interruption study demonstrating 23min 15sec task-switching recovery overhead per interruption ($28,000/employee/year in lost billable output). <a href=\"https://www.ics.uci.edu/~gmark/\" target=\"_blank\" rel=\"noopener noreferrer\">UC Irvine Research</a> | <a href=\"https://www.wsj.com\" target=\"_blank\" rel=\"noopener noreferrer\">WSJ Analysis</a></li>\n    <li id=\"fn-sap\"><strong>SAP Workplace Health Index Benchmark:</strong> Enterprise spatial and well-being study showing each 1% increase in index yields $90M–$100M in annual operating profit gain. <a href=\"https://www.sap.com\" target=\"_blank\" rel=\"noopener noreferrer\">SAP Enterprise Study</a></li>\n    <li id=\"fn-cisco\"><strong>Cisco PENN 1 & Osaka Hybrid Workspace Blueprint:</strong> Office redesign achieving a 40% increase in collaboration zones, 13% workstation capacity gain in 36% less footprint, and $1.2M lease/energy savings. <a href=\"https://www.cisco.com/c/en/us/solutions/hybrid-work/penn-1.html\" target=\"_blank\" rel=\"noopener noreferrer\">Cisco PENN 1 Blueprint</a></li>\n    <li id=\"fn-microsoft\"><strong>Microsoft Modern AI Workplace Study:</strong> Reengineered AI co-creation workspaces reducing task-switching overhead, eliminating 1.2 hrs/day of redundant sync meetings, and boosting developer velocity by 22%. <a href=\"https://www.steelcase.com/research/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase WorkSpace Research</a></li>\n    <li id=\"fn-gensler\"><strong>Gensler Workplace Index (Acoustic Focus & Retention):</strong> Companies providing high-STC acoustic focus zones exhibit 21% higher cognitive performance scores and 18% lower voluntary turnover. <a href=\"https://www.gensler.com/gri/global-workplace-survey-2024\" target=\"_blank\" rel=\"noopener noreferrer\">Gensler Survey</a></li>\n    <li id=\"fn-paris-worklife\"><strong>Steelcase Paris WorkLife Hybrid Lab:</strong> Technology-enabled video and acoustic focus pods resulting in a 13% direct gain in daily productivity and a 28% increase in workplace satisfaction. <a href=\"https://www.steelcase.com/research/articles/topics/hybrid-work/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase Hybrid Work Lab</a></li>\n    <li id=\"fn-iima\"><strong>IIMA Ventures Startup Accelerator Case Study:</strong> Steelcase morphable Maker Labs and mobile acoustic boundaries enabled a 35% acceleration in product iteration cycles. <a href=\"https://swiy.co/Steelcase-community-based-design\" target=\"_blank\" rel=\"noopener noreferrer\">Community-Based Design Case Study</a></li>\n    <li id=\"fn-flex-agile\"><strong>Steelcase Flex Agile Teams Study:</strong> High-performing cross-functional teams equipped with adaptable furniture and spatial reconfigurability are 5x more likely to be high-performing and profitable. <a href=\"https://www.steelcase.com/research/articles/topics/privacy/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase Flex Agile Teams Study</a></li>\n    <li id=\"fn-mckinsey\"><strong>McKinsey & Company State of AI & Future of Work Report:</strong> Global AI deployment benchmark detailing generative AI productivity curves and spatial collaboration requirements. <a href=\"https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai\" target=\"_blank\" rel=\"noopener noreferrer\">McKinsey AI Report</a></li>\n    <li id=\"fn-gartner\"><strong>Gartner Digital Workplace & Smart Office Analytics:</strong> Analytics on smart office sensors, acoustic isolation, and agile pod density. <a href=\"https://www.gartner.com/en/information-technology/insights/digital-workplace\" target=\"_blank\" rel=\"noopener noreferrer\">Gartner Digital Workplace</a></li>\n    <li id=\"fn-hbr\"><strong>Harvard Business Review & BCG Generative AI Productivity Study:</strong> Empirical research on AI-assisted team output, task quality gains, and project velocity acceleration. <a href=\"https://hbr.org/topic/subject/ai-and-machine-learning\" target=\"_blank\" rel=\"noopener noreferrer\">HBR AI Research</a></li>\n    <li id=\"fn-steelcase-privacy\"><strong>Steelcase Privacy & Acoustic Pods Research:</strong> Applied environmental study on acoustic transmission class (STC 38+), speech privacy, and focus recovery in open-plan spaces. <a href=\"https://www.steelcase.com/research/articles/topics/privacy/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase Acoustic Privacy Guide</a> | <a href=\"https://www.steelcase.com/products/\" target=\"_blank\" rel=\"noopener noreferrer\">Steelcase Products</a></li>\n  </ol>\n</div>",
     "ragFiles": [],
     "ragLinks": []
   },
@@ -1243,8 +1239,8 @@
                 <span style="background: #1E293B; padding: 1px 6px; border-radius: 4px; color: #38BDF8; font-size: 9px;">Live Log</span>
               </div>
               <div id="diagnostic-thinking-console" style="display: flex; flex-direction: column; gap: 3px;">
-                <div style="color: #CBD5E1;">[08:47:21] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
-                <div style="color: #CBD5E1;">[08:47:21] [Client Engine] Connecting to AI model endpoint...</div>
+                <div style="color: #CBD5E1;">[09:09:29] [Client Engine] Initiating diagnostic pipeline for ${lead.company || 'Organization'}...</div>
+                <div style="color: #CBD5E1;">[09:09:29] [Client Engine] Connecting to AI model endpoint...</div>
               </div>
             </div>
 
